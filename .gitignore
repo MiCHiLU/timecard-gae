@@ -1,6 +1,10 @@
 Gemfile.lock
 datastore.db
 doc
+gae/dart/build
+gae/dart/packages
+gae/dart/pubspec.lock
+gae/dart/web/packages
 node_modules
 tags
 

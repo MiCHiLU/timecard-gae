@@ -2,6 +2,6 @@ name: timecard AngularDart client
 version: 0.0.1
 dependencies:
   angular:
-    path: ../..
+    path: ../../../../src/angular-0.9.5+2
   browser: any
   unittest: any

@@ -62,8 +62,12 @@ handlers:
   script: tap.app
 - url: /robots.txt
   script: tap.app_static_root
-- url: /.*
-  script: tap.app
+- url: (.*)/
+  static_files: dart/build\1/index.html
+  upload: dart/build(.*)/index.html
+- url: (.*)
+  static_files: dart/build\1
+  upload: dart/build(.*)
 
 admin_console:
   pages:
