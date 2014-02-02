@@ -29,6 +29,7 @@ gae/dart/web/*.html
 gae/oauth_config/*.py
 gae/site-packages/*.zip
 gae/site-packages/packages
+gae/static/*.html
 gae/static/lib
 gae/static/sitemap.html
 gae/static_root.zip
@@ -39,4 +40,3 @@ gae/tap/templates/tap/mob/*.xhtml
 gae/templates/*.html
 gae/templates/*.py
 gae/templates/mob/*.xhtml
-gae/static/*.html
