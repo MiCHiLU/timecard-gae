@@ -1,0 +1,28 @@
+!!!
+%html/
+%style [ng-cloak] {display: none;}
+%script(src="main.dart" type="application/dart")
+%script(src="packages/browser/dart.js")
+%script(src="packages/browser/interop.js")
+%body(ng-app)/
+.border.well.loading{"ng-hide" => "true"} Wait, Dart is loading this awesome app...
+.border.well{"ng-cloak" => "", "todo-controller" => ""}
+  %h2 Things To Do ;-)
+  .right
+    %button.btn.btn-small{"ng-click" => "todo.markAllDone()"} mark all done
+    %button.btn.btn-small{"ng-click" => "todo.archiveDone()"} archive done
+  %p
+    Remaining
+    %b {{todo.remaining()}}
+    of
+    %b {{todo.items.length}}
+    items.
+  %ul.well.unstyled
+    %li{"ng-class" => "todo.classFor(item)", "ng-repeat" => "item in todo.items"}
+      %label.checkbox
+        %input{"ng-model" => "item.done", :type => "checkbox"}/
+        {{item.text}}
+  %form.form-inline{:onsubmit => "return false;"}
+    %input{"ng-model" => "todo.newItem.text", :type => "text"}/
+    %button.btn.btn-primary{"ng-click" => "todo.add()", "ng-disabled" => "todo.newItem.isEmpty"} add
+    %button.btn{"ng-click" => "todo.newItem.clear()", "ng-disabled" => "todo.newItem.isEmpty"} clear
