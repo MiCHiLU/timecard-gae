@@ -1,3 +1,48 @@
-import 'package:angular/angular.dart';
+import "package:angular/angular.dart";
+import "package:timecard_dev_api/timecard_dev_api_browser.dart";
+import "package:google_oauth2_client/google_oauth2_browser.dart";
 
-main() => ngBootstrap();
+@NgController(
+    selector: "[app]",
+    publishAs: "s")
+class Controller {
+
+  final CLIENT_ID = "636938638718.apps.googleusercontent.com";
+  final SCOPES = ["https://www.googleapis.com/auth/userinfo.email"];
+  final ROOT_URL = "http://localhost:8080/";
+  GoogleOAuth2 auth;
+  Timecard endpoint;
+  bool logged_in = false;
+  var user;
+
+  Controller() {
+    auth = new GoogleOAuth2(CLIENT_ID, SCOPES, tokenLoaded:get_user, autoLogin:true);
+    endpoint = new Timecard(auth);
+    endpoint.rootUrl = ROOT_URL;
+    endpoint.makeAuthRequests = true;
+  }
+
+  void login() {
+    auth.login().then(get_user);
+  }
+
+  void logout() {
+    auth.logout().then((_) {
+      user = null;
+      logged_in = false;
+    });
+  }
+
+  void get_user(_token) {
+    endpoint.me.get().then((MainApiV1MessageUserSend response) {
+      user = response;
+      logged_in = true;
+    });
+  }
+}
+
+main() {
+  var module = new Module()
+    ..type(Controller);
+  ngBootstrap(module:module);
+}

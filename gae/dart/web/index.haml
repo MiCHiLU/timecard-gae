@@ -4,13 +4,13 @@
 %meta(http-equiv="X-UA-Compatible" content="IE=edge")
 %meta(name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0")
 %title Timecard
-%style [ng-cloak] {display: none;}
+%style [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {display: none !important;}
 %link(rel="apple-touch-icon-precomposed" href="/static/img/apple-touch-icon.png")
 %link(rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css")
 %script(src="packages/shadow_dom/shadow_dom.min.js")
 %script(src="main.dart" type="application/dart")
 %script(src="packages/browser/dart.js")
-%body/
+%body(app)/
 
 %nav.navbar.navbar-default{:role => "navigation"}
   .container
@@ -21,29 +21,29 @@
         %span.icon-bar
       %a.navbar-brand{"data-no-turbolink" => "1", :href => "/"} Timecard
 
-    .collapse.navbar-collapse.navbar-ex1-collapse(ng-cloak)
-      %ul.nav.navbar-nav
+    .collapse.navbar-collapse.navbar-ex1-collapse
+      %ul.nav.navbar-nav(ng-cloak)
         %li
           %a
             %span.text-muted Projects
-        %li(ng-show="user")
+        %li(ng-if="s.logged_in")
           %a
             %span.text-muted Me
-      %ul.nav.navbar-nav.navbar-right
-        %li(ng-show="user")
+      %ul.nav.navbar-nav.navbar-right(ng-cloak)
+        %li(ng-if="s.logged_in")
           %a(href="settings") Account settings
-        %li(ng-show="user")
-          %a(href="") Logout
+        %li(ng-if="s.logged_in")
+          %a(href="s.logout()") Logout
         -#{% for value, key in language_list %}
         -#{% if value != LANGUAGE %}
         -#%li
         -#  %a(href="?l={{ value }}") {{ key }}
         -#{% endif %}
         -#{% endfor %}
-        %li(ng-hide="user")
-          %a(href="") Login
+        %li(ng-if="!s.logged_in")
+          %a(ng-click="s.login()") Login
 
-.container(ng-hide="user")
+.container(ng-if="!s.logged_in")
   .row
     .col-lg-12.col-md-12
       .welcome.text-center
