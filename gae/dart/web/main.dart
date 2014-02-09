@@ -27,10 +27,9 @@ class Controller {
   }
 
   void logout() {
-    auth.logout().then((_) {
-      user = null;
-      logged_in = false;
-    });
+    auth.logout();
+    user = null;
+    logged_in = false;
   }
 
   void get_user(_token) {
