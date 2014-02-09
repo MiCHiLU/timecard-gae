@@ -1,4 +1,4 @@
-name: timecard AngularDart client
+name: timecard_AngularDart_client
 version: 0.0.1
 dependencies:
   angular:
