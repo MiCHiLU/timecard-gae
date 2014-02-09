@@ -1,28 +1,71 @@
 !!!
-%html/
+%html(ng-app)/
+%meta(charset="UTF-8")
+%meta(http-equiv="X-UA-Compatible" content="IE=edge")
+%meta(name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0")
+%title Timecard
 %style [ng-cloak] {display: none;}
+%link(rel="apple-touch-icon-precomposed" href="/static/img/apple-touch-icon.png")
+%link(rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css")
+%script(src="packages/shadow_dom/shadow_dom.min.js")
 %script(src="main.dart" type="application/dart")
 %script(src="packages/browser/dart.js")
-%script(src="packages/browser/interop.js")
-%body(ng-app)/
-.border.well.loading{"ng-hide" => "true"} Wait, Dart is loading this awesome app...
-.border.well{"ng-cloak" => "", "todo-controller" => ""}
-  %h2 Things To Do ;-)
-  .right
-    %button.btn.btn-small{"ng-click" => "todo.markAllDone()"} mark all done
-    %button.btn.btn-small{"ng-click" => "todo.archiveDone()"} archive done
-  %p
-    Remaining
-    %b {{todo.remaining()}}
-    of
-    %b {{todo.items.length}}
-    items.
-  %ul.well.unstyled
-    %li{"ng-class" => "todo.classFor(item)", "ng-repeat" => "item in todo.items"}
-      %label.checkbox
-        %input{"ng-model" => "item.done", :type => "checkbox"}/
-        {{item.text}}
-  %form.form-inline{:onsubmit => "return false;"}
-    %input{"ng-model" => "todo.newItem.text", :type => "text"}/
-    %button.btn.btn-primary{"ng-click" => "todo.add()", "ng-disabled" => "todo.newItem.isEmpty"} add
-    %button.btn{"ng-click" => "todo.newItem.clear()", "ng-disabled" => "todo.newItem.isEmpty"} clear
+%body/
+
+%nav.navbar.navbar-default{:role => "navigation"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{"data-no-turbolink" => "1", :href => "/"} Timecard
+
+    .collapse.navbar-collapse.navbar-ex1-collapse(ng-cloak)
+      %ul.nav.navbar-nav
+        %li
+          %a
+            %span.text-muted Projects
+        %li(ng-show="user")
+          %a
+            %span.text-muted Me
+      %ul.nav.navbar-nav.navbar-right
+        %li(ng-show="user")
+          %a(href="settings") Account settings
+        %li(ng-show="user")
+          %a(href="") Logout
+        -#{% for value, key in language_list %}
+        -#{% if value != LANGUAGE %}
+        -#%li
+        -#  %a(href="?l={{ value }}") {{ key }}
+        -#{% endif %}
+        -#{% endfor %}
+        %li(ng-hide="user")
+          %a(href="") Login
+
+.container(ng-hide="user")
+  .row
+    .col-lg-12.col-md-12
+      .welcome.text-center
+        .jumbotron(style="background-color:#fff;")
+          %h1 Timecard
+          %p.lead
+            Time tracking for your project.
+          .row(style="height:74px; padding:20px 0;")
+            .col-md-3.col-md-offset-2(ng-cloak)
+              %a.btn.btn-primary.btn-block(href="") Sign in with Google
+            .col-md-3(ng-cloak)
+              %a.btn.btn-default.btn-block.disabled(href="") Sign in with Github
+            .col-md-3(ng-cloak)
+              %a.btn.btn-default.btn-block.disabled(href="") Sign in with Ruffnote
+        %section
+          %h2(style="color:#555555; font-weight:normal;")
+            It is possible to time tracking in connection with the Github Issue.
+          %h2(style="color:#555555; font-weight:normal;")
+            Project owner can see at a glance the working hours of project members.
+
+%footer(style="margin-top:100px;")
+  %div(style="text-align:center;")
+    &copy; Timecard
+    &nbsp; 2013-2014
+    %span.text-muted(ng-cloak) {{ version }}
