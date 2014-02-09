@@ -1,0 +1,14 @@
+name: timecard_dev_api
+version: 0.4.0
+authors:
+- Adam Singer <financeCoding@gmail.com>
+- Gerwin Sturm <scarygami@gmail.com>
+- Kevin Moore <kevin@thinkpixellab.com>
+description: Auto-generated client library for accessing the timecard dev API
+homepage: https://github.com/dart-gde/discovery_api_dart_client_generator
+environment:
+  sdk: '>=0.8.10+6 <2.0.0'
+dependencies:
+  google_oauth2_client: '>=0.3.2'
+dev_dependencies:
+  hop: '>=0.27.1'
