@@ -4,7 +4,7 @@ import "package:google_oauth2_client/google_oauth2_browser.dart";
 
 @NgController(
     selector: "[app]",
-    publishAs: "s")
+    publishAs: "c")
 class Controller {
 
   final CLIENT_ID = "636938638718.apps.googleusercontent.com";
