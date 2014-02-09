@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import "package:angular/angular.dart";
 import "package:timecard_dev_api/timecard_dev_api_browser.dart";
 import "package:google_oauth2_client/google_oauth2_browser.dart";
@@ -40,8 +41,16 @@ class Controller {
   }
 }
 
+@NgController(
+    selector: "footer",
+    publishAs: "c")
+class Footer {
+  final year = new DateFormat("y").format(new DateTime.now());
+}
+
 main() {
   var module = new Module()
-    ..type(Controller);
+    ..type(Controller)
+    ..type(Footer);
   ngBootstrap(module:module);
 }
