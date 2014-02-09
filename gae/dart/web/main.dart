@@ -34,7 +34,7 @@ class Controller {
   }
 
   void get_user(_token) {
-    endpoint.me.get().then((MainApiV1MessageUserSend response) {
+    endpoint.me.get().then((response) {
       user = response;
       logged_in = true;
     });
