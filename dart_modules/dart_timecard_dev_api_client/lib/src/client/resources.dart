@@ -9,11 +9,11 @@ class CommentResource_ {
 
   /**
    *
-   * [request] - MainApiV1MessageCommentReceive to send in this request
+   * [request] - MainApiV1MessageCommentRequest to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageCommentSend> create(MainApiV1MessageCommentReceive request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageCommentResponse> create(MainApiV1MessageCommentRequest request, {core.Map optParams}) {
     var url = "comment/create";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -34,16 +34,16 @@ class CommentResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageCommentSend.fromJson(data));
+      .then((data) => new MainApiV1MessageCommentResponse.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageCommentReceiveList to send in this request
+   * [request] - MainApiV1MessageCommentRequestList to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageCommentSendCollection> list(MainApiV1MessageCommentReceiveList request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageCommentResponseCollection> list(MainApiV1MessageCommentRequestList request, {core.Map optParams}) {
     var url = "comment/list";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -64,16 +64,16 @@ class CommentResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageCommentSendCollection.fromJson(data));
+      .then((data) => new MainApiV1MessageCommentResponseCollection.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageCommentReceiveUpdate to send in this request
+   * [request] - MainApiV1MessageCommentRequestUpdate to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageCommentSend> update(MainApiV1MessageCommentReceiveUpdate request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageCommentResponse> update(MainApiV1MessageCommentRequestUpdate request, {core.Map optParams}) {
     var url = "comment/update";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -94,7 +94,7 @@ class CommentResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageCommentSend.fromJson(data));
+      .then((data) => new MainApiV1MessageCommentResponse.fromJson(data));
   }
 }
 
@@ -107,11 +107,11 @@ class IssueResource_ {
 
   /**
    *
-   * [request] - MainApiV1MessageIssueReceiveToggle to send in this request
+   * [request] - MainApiV1MessageIssueRequestToggle to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageIssueSend> close(MainApiV1MessageIssueReceiveToggle request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageIssueResponse> close(MainApiV1MessageIssueRequestToggle request, {core.Map optParams}) {
     var url = "issue/close";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -132,16 +132,16 @@ class IssueResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageIssueSend.fromJson(data));
+      .then((data) => new MainApiV1MessageIssueResponse.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageIssueReceiveNew to send in this request
+   * [request] - MainApiV1MessageIssueRequestNew to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageIssueSend> create(MainApiV1MessageIssueReceiveNew request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageIssueResponse> create(MainApiV1MessageIssueRequestNew request, {core.Map optParams}) {
     var url = "issue/create";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -162,16 +162,16 @@ class IssueResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageIssueSend.fromJson(data));
+      .then((data) => new MainApiV1MessageIssueResponse.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageIssueReceiveList to send in this request
+   * [request] - MainApiV1MessageIssueRequestList to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageIssueSendCollection> list(MainApiV1MessageIssueReceiveList request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageIssueResponseCollection> list(MainApiV1MessageIssueRequestList request, {core.Map optParams}) {
     var url = "issue/list";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -192,16 +192,16 @@ class IssueResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageIssueSendCollection.fromJson(data));
+      .then((data) => new MainApiV1MessageIssueResponseCollection.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageIssueReceiveToggle to send in this request
+   * [request] - MainApiV1MessageIssueRequestToggle to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageIssueSend> reopen(MainApiV1MessageIssueReceiveToggle request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageIssueResponse> reopen(MainApiV1MessageIssueRequestToggle request, {core.Map optParams}) {
     var url = "issue/reopen";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -222,16 +222,16 @@ class IssueResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageIssueSend.fromJson(data));
+      .then((data) => new MainApiV1MessageIssueResponse.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageIssueReceiveSearch to send in this request
+   * [request] - MainApiV1MessageIssueRequestSearch to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageIssueSendCollection> search(MainApiV1MessageIssueReceiveSearch request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageIssueResponseCollection> search(MainApiV1MessageIssueRequestSearch request, {core.Map optParams}) {
     var url = "issue/search";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -252,16 +252,16 @@ class IssueResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageIssueSendCollection.fromJson(data));
+      .then((data) => new MainApiV1MessageIssueResponseCollection.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageIssueReceive to send in this request
+   * [request] - MainApiV1MessageIssueRequest to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageIssueSend> update(MainApiV1MessageIssueReceive request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageIssueResponse> update(MainApiV1MessageIssueRequest request, {core.Map optParams}) {
     var url = "issue/update";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -282,7 +282,7 @@ class IssueResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageIssueSend.fromJson(data));
+      .then((data) => new MainApiV1MessageIssueResponse.fromJson(data));
   }
 }
 
@@ -295,11 +295,11 @@ class MeResource_ {
 
   /**
    *
-   * [request] - MainApiV1MessageUserReceive to send in this request
+   * [request] - MainApiV1MessageUserRequest to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageUserSend> create(MainApiV1MessageUserReceive request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageUserResponse> create(MainApiV1MessageUserRequest request, {core.Map optParams}) {
     var url = "me/create";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -320,16 +320,16 @@ class MeResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageUserSend.fromJson(data));
+      .then((data) => new MainApiV1MessageUserResponse.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageUserReceiveDelete to send in this request
+   * [request] - MainApiV1MessageUserRequestDelete to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<core.Map> delete(MainApiV1MessageUserReceiveDelete request, {core.Map optParams}) {
+  async.Future<core.Map> delete(MainApiV1MessageUserRequestDelete request, {core.Map optParams}) {
     var url = "me/delete";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -356,7 +356,7 @@ class MeResource_ {
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageUserSend> get({core.Map optParams}) {
+  async.Future<MainApiV1MessageUserResponse> get({core.Map optParams}) {
     var url = "me/get";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -377,16 +377,16 @@ class MeResource_ {
     var response;
     response = _client.request(url, "POST", urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageUserSend.fromJson(data));
+      .then((data) => new MainApiV1MessageUserResponse.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageUserReceive to send in this request
+   * [request] - MainApiV1MessageUserRequest to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageUserSend> patch(MainApiV1MessageUserReceive request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageUserResponse> patch(MainApiV1MessageUserRequest request, {core.Map optParams}) {
     var url = "me/update";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -407,16 +407,16 @@ class MeResource_ {
     var response;
     response = _client.request(url, "PATCH", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageUserSend.fromJson(data));
+      .then((data) => new MainApiV1MessageUserResponse.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageUserReceive to send in this request
+   * [request] - MainApiV1MessageUserRequest to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageUserSend> update(MainApiV1MessageUserReceive request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageUserResponse> update(MainApiV1MessageUserRequest request, {core.Map optParams}) {
     var url = "me/update";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -437,7 +437,7 @@ class MeResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageUserSend.fromJson(data));
+      .then((data) => new MainApiV1MessageUserResponse.fromJson(data));
   }
 }
 
@@ -450,11 +450,11 @@ class ProjectResource_ {
 
   /**
    *
-   * [request] - MainApiV1MessageProjectReceiveNew to send in this request
+   * [request] - MainApiV1MessageProjectRequestNew to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageProjectSend> create(MainApiV1MessageProjectReceiveNew request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageProjectResponse> create(MainApiV1MessageProjectRequestNew request, {core.Map optParams}) {
     var url = "project/create";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -475,16 +475,16 @@ class ProjectResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageProjectSend.fromJson(data));
+      .then((data) => new MainApiV1MessageProjectResponse.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageProjectReceiveDelete to send in this request
+   * [request] - MainApiV1MessageProjectRequestDelete to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<core.Map> delete(MainApiV1MessageProjectReceiveDelete request, {core.Map optParams}) {
+  async.Future<core.Map> delete(MainApiV1MessageProjectRequestDelete request, {core.Map optParams}) {
     var url = "project/delete";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -509,11 +509,11 @@ class ProjectResource_ {
 
   /**
    *
-   * [request] - MainApiV1MessageProjectReceiveList to send in this request
+   * [request] - MainApiV1MessageProjectRequestList to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageProjectSendCollection> list(MainApiV1MessageProjectReceiveList request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageProjectResponseCollection> list(MainApiV1MessageProjectRequestList request, {core.Map optParams}) {
     var url = "project/list";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -534,16 +534,16 @@ class ProjectResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageProjectSendCollection.fromJson(data));
+      .then((data) => new MainApiV1MessageProjectResponseCollection.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageProjectReceiveSearch to send in this request
+   * [request] - MainApiV1MessageProjectRequestSearch to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageProjectSendCollection> search(MainApiV1MessageProjectReceiveSearch request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageProjectResponseCollection> search(MainApiV1MessageProjectRequestSearch request, {core.Map optParams}) {
     var url = "project/search";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -564,16 +564,16 @@ class ProjectResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageProjectSendCollection.fromJson(data));
+      .then((data) => new MainApiV1MessageProjectResponseCollection.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageProjectReceive to send in this request
+   * [request] - MainApiV1MessageProjectRequest to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageProjectSend> update(MainApiV1MessageProjectReceive request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageProjectResponse> update(MainApiV1MessageProjectRequest request, {core.Map optParams}) {
     var url = "project/update";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -594,7 +594,7 @@ class ProjectResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageProjectSend.fromJson(data));
+      .then((data) => new MainApiV1MessageProjectResponse.fromJson(data));
   }
 }
 
@@ -607,11 +607,11 @@ class UserResource_ {
 
   /**
    *
-   * [request] - MainApiV1MessageUserReceiveListCollection to send in this request
+   * [request] - MainApiV1MessageUserRequestListCollection to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageUserSendCollection> list(MainApiV1MessageUserReceiveListCollection request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageUserResponseCollection> list(MainApiV1MessageUserRequestListCollection request, {core.Map optParams}) {
     var url = "user/list";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -632,16 +632,16 @@ class UserResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageUserSendCollection.fromJson(data));
+      .then((data) => new MainApiV1MessageUserResponseCollection.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageUserReceiveSearch to send in this request
+   * [request] - MainApiV1MessageUserRequestSearch to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageUserSendCollection> search(MainApiV1MessageUserReceiveSearch request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageUserResponseCollection> search(MainApiV1MessageUserRequestSearch request, {core.Map optParams}) {
     var url = "user/search";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -662,7 +662,7 @@ class UserResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageUserSendCollection.fromJson(data));
+      .then((data) => new MainApiV1MessageUserResponseCollection.fromJson(data));
   }
 }
 
@@ -675,11 +675,11 @@ class WorkloadResource_ {
 
   /**
    *
-   * [request] - MainApiV1MessageWorkLoadReceiveNew to send in this request
+   * [request] - MainApiV1MessageWorkLoadRequestNew to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageWorkLoadSend> create(MainApiV1MessageWorkLoadReceiveNew request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageWorkLoadResponse> create(MainApiV1MessageWorkLoadRequestNew request, {core.Map optParams}) {
     var url = "workload/create";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -700,16 +700,16 @@ class WorkloadResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageWorkLoadSend.fromJson(data));
+      .then((data) => new MainApiV1MessageWorkLoadResponse.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageWorkLoadReceiveClose to send in this request
+   * [request] - MainApiV1MessageWorkLoadRequestClose to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageWorkLoadSend> finish(MainApiV1MessageWorkLoadReceiveClose request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageWorkLoadResponse> finish(MainApiV1MessageWorkLoadRequestClose request, {core.Map optParams}) {
     var url = "workload/finish";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -730,14 +730,14 @@ class WorkloadResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageWorkLoadSend.fromJson(data));
+      .then((data) => new MainApiV1MessageWorkLoadResponse.fromJson(data));
   }
 
   /**
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageWorkLoadSend> get({core.Map optParams}) {
+  async.Future<MainApiV1MessageWorkLoadResponse> get({core.Map optParams}) {
     var url = "workload/get";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -758,16 +758,16 @@ class WorkloadResource_ {
     var response;
     response = _client.request(url, "POST", urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageWorkLoadSend.fromJson(data));
+      .then((data) => new MainApiV1MessageWorkLoadResponse.fromJson(data));
   }
 
   /**
    *
-   * [request] - MainApiV1MessageWorkLoadReceiveList to send in this request
+   * [request] - MainApiV1MessageWorkLoadRequestList to send in this request
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<MainApiV1MessageWorkLoadSendCollection> list(MainApiV1MessageWorkLoadReceiveList request, {core.Map optParams}) {
+  async.Future<MainApiV1MessageWorkLoadResponseCollection> list(MainApiV1MessageWorkLoadRequestList request, {core.Map optParams}) {
     var url = "workload/list";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -788,7 +788,7 @@ class WorkloadResource_ {
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     return response
-      .then((data) => new MainApiV1MessageWorkLoadSendCollection.fromJson(data));
+      .then((data) => new MainApiV1MessageWorkLoadResponseCollection.fromJson(data));
   }
 }
 

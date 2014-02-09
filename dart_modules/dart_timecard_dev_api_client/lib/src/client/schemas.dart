@@ -1,13 +1,13 @@
 part of timecard_dev_api;
 
-class MainApiV1MessageCommentReceive {
+class MainApiV1MessageCommentRequest {
 
   core.String body;
 
   core.String issue;
 
-  /** Create new MainApiV1MessageCommentReceive from JSON data */
-  MainApiV1MessageCommentReceive.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageCommentRequest from JSON data */
+  MainApiV1MessageCommentRequest.fromJson(core.Map json) {
     if (json.containsKey("body")) {
       body = json["body"];
     }
@@ -16,7 +16,7 @@ class MainApiV1MessageCommentReceive {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageCommentReceive */
+  /** Create JSON Object for MainApiV1MessageCommentRequest */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -30,12 +30,12 @@ class MainApiV1MessageCommentReceive {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageCommentReceive */
+  /** Return String representation of MainApiV1MessageCommentRequest */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageCommentReceiveList {
+class MainApiV1MessageCommentRequestList {
 
   core.String issue;
 
@@ -43,8 +43,8 @@ class MainApiV1MessageCommentReceiveList {
 
   core.int project;
 
-  /** Create new MainApiV1MessageCommentReceiveList from JSON data */
-  MainApiV1MessageCommentReceiveList.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageCommentRequestList from JSON data */
+  MainApiV1MessageCommentRequestList.fromJson(core.Map json) {
     if (json.containsKey("issue")) {
       issue = json["issue"];
     }
@@ -56,7 +56,7 @@ class MainApiV1MessageCommentReceiveList {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageCommentReceiveList */
+  /** Create JSON Object for MainApiV1MessageCommentRequestList */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -73,19 +73,19 @@ class MainApiV1MessageCommentReceiveList {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageCommentReceiveList */
+  /** Return String representation of MainApiV1MessageCommentRequestList */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageCommentReceiveUpdate {
+class MainApiV1MessageCommentRequestUpdate {
 
   core.String body;
 
   core.String key;
 
-  /** Create new MainApiV1MessageCommentReceiveUpdate from JSON data */
-  MainApiV1MessageCommentReceiveUpdate.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageCommentRequestUpdate from JSON data */
+  MainApiV1MessageCommentRequestUpdate.fromJson(core.Map json) {
     if (json.containsKey("body")) {
       body = json["body"];
     }
@@ -94,7 +94,7 @@ class MainApiV1MessageCommentReceiveUpdate {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageCommentReceiveUpdate */
+  /** Create JSON Object for MainApiV1MessageCommentRequestUpdate */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -108,12 +108,12 @@ class MainApiV1MessageCommentReceiveUpdate {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageCommentReceiveUpdate */
+  /** Return String representation of MainApiV1MessageCommentRequestUpdate */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageCommentSend {
+class MainApiV1MessageCommentResponse {
 
   core.String author;
 
@@ -131,8 +131,8 @@ class MainApiV1MessageCommentSend {
 
   core.String update_at;
 
-  /** Create new MainApiV1MessageCommentSend from JSON data */
-  MainApiV1MessageCommentSend.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageCommentResponse from JSON data */
+  MainApiV1MessageCommentResponse.fromJson(core.Map json) {
     if (json.containsKey("author")) {
       author = json["author"];
     }
@@ -159,7 +159,7 @@ class MainApiV1MessageCommentSend {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageCommentSend */
+  /** Create JSON Object for MainApiV1MessageCommentResponse */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -191,28 +191,28 @@ class MainApiV1MessageCommentSend {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageCommentSend */
+  /** Return String representation of MainApiV1MessageCommentResponse */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageCommentSendCollection {
+class MainApiV1MessageCommentResponseCollection {
 
-  core.List<MainApiV1MessageCommentSend> items;
+  core.List<MainApiV1MessageCommentResponse> items;
 
   core.String pagination;
 
-  /** Create new MainApiV1MessageCommentSendCollection from JSON data */
-  MainApiV1MessageCommentSendCollection.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageCommentResponseCollection from JSON data */
+  MainApiV1MessageCommentResponseCollection.fromJson(core.Map json) {
     if (json.containsKey("items")) {
-      items = json["items"].map((itemsItem) => new MainApiV1MessageCommentSend.fromJson(itemsItem)).toList();
+      items = json["items"].map((itemsItem) => new MainApiV1MessageCommentResponse.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("pagination")) {
       pagination = json["pagination"];
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageCommentSendCollection */
+  /** Create JSON Object for MainApiV1MessageCommentResponseCollection */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -226,12 +226,12 @@ class MainApiV1MessageCommentSendCollection {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageCommentSendCollection */
+  /** Return String representation of MainApiV1MessageCommentResponseCollection */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageIssueReceive {
+class MainApiV1MessageIssueRequest {
 
   core.String assignee;
 
@@ -241,8 +241,8 @@ class MainApiV1MessageIssueReceive {
 
   core.String subject;
 
-  /** Create new MainApiV1MessageIssueReceive from JSON data */
-  MainApiV1MessageIssueReceive.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageIssueRequest from JSON data */
+  MainApiV1MessageIssueRequest.fromJson(core.Map json) {
     if (json.containsKey("assignee")) {
       assignee = json["assignee"];
     }
@@ -257,7 +257,7 @@ class MainApiV1MessageIssueReceive {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageIssueReceive */
+  /** Create JSON Object for MainApiV1MessageIssueRequest */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -277,19 +277,19 @@ class MainApiV1MessageIssueReceive {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageIssueReceive */
+  /** Return String representation of MainApiV1MessageIssueRequest */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageIssueReceiveList {
+class MainApiV1MessageIssueRequestList {
 
   core.String pagination;
 
   core.int project;
 
-  /** Create new MainApiV1MessageIssueReceiveList from JSON data */
-  MainApiV1MessageIssueReceiveList.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageIssueRequestList from JSON data */
+  MainApiV1MessageIssueRequestList.fromJson(core.Map json) {
     if (json.containsKey("pagination")) {
       pagination = json["pagination"];
     }
@@ -298,7 +298,7 @@ class MainApiV1MessageIssueReceiveList {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageIssueReceiveList */
+  /** Create JSON Object for MainApiV1MessageIssueRequestList */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -312,12 +312,12 @@ class MainApiV1MessageIssueReceiveList {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageIssueReceiveList */
+  /** Return String representation of MainApiV1MessageIssueRequestList */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageIssueReceiveNew {
+class MainApiV1MessageIssueRequestNew {
 
   core.String assignee;
 
@@ -327,8 +327,8 @@ class MainApiV1MessageIssueReceiveNew {
 
   core.String subject;
 
-  /** Create new MainApiV1MessageIssueReceiveNew from JSON data */
-  MainApiV1MessageIssueReceiveNew.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageIssueRequestNew from JSON data */
+  MainApiV1MessageIssueRequestNew.fromJson(core.Map json) {
     if (json.containsKey("assignee")) {
       assignee = json["assignee"];
     }
@@ -343,7 +343,7 @@ class MainApiV1MessageIssueReceiveNew {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageIssueReceiveNew */
+  /** Create JSON Object for MainApiV1MessageIssueRequestNew */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -363,12 +363,12 @@ class MainApiV1MessageIssueReceiveNew {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageIssueReceiveNew */
+  /** Return String representation of MainApiV1MessageIssueRequestNew */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageIssueReceiveSearch {
+class MainApiV1MessageIssueRequestSearch {
 
   core.String pagination;
 
@@ -376,8 +376,8 @@ class MainApiV1MessageIssueReceiveSearch {
 
   core.String query;
 
-  /** Create new MainApiV1MessageIssueReceiveSearch from JSON data */
-  MainApiV1MessageIssueReceiveSearch.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageIssueRequestSearch from JSON data */
+  MainApiV1MessageIssueRequestSearch.fromJson(core.Map json) {
     if (json.containsKey("pagination")) {
       pagination = json["pagination"];
     }
@@ -389,7 +389,7 @@ class MainApiV1MessageIssueReceiveSearch {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageIssueReceiveSearch */
+  /** Create JSON Object for MainApiV1MessageIssueRequestSearch */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -406,23 +406,23 @@ class MainApiV1MessageIssueReceiveSearch {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageIssueReceiveSearch */
+  /** Return String representation of MainApiV1MessageIssueRequestSearch */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageIssueReceiveToggle {
+class MainApiV1MessageIssueRequestToggle {
 
   core.String key;
 
-  /** Create new MainApiV1MessageIssueReceiveToggle from JSON data */
-  MainApiV1MessageIssueReceiveToggle.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageIssueRequestToggle from JSON data */
+  MainApiV1MessageIssueRequestToggle.fromJson(core.Map json) {
     if (json.containsKey("key")) {
       key = json["key"];
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageIssueReceiveToggle */
+  /** Create JSON Object for MainApiV1MessageIssueRequestToggle */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -433,12 +433,12 @@ class MainApiV1MessageIssueReceiveToggle {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageIssueReceiveToggle */
+  /** Return String representation of MainApiV1MessageIssueRequestToggle */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageIssueSend {
+class MainApiV1MessageIssueResponse {
 
   core.String assignee;
 
@@ -456,8 +456,8 @@ class MainApiV1MessageIssueSend {
 
   core.String will_start_at;
 
-  /** Create new MainApiV1MessageIssueSend from JSON data */
-  MainApiV1MessageIssueSend.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageIssueResponse from JSON data */
+  MainApiV1MessageIssueResponse.fromJson(core.Map json) {
     if (json.containsKey("assignee")) {
       assignee = json["assignee"];
     }
@@ -484,7 +484,7 @@ class MainApiV1MessageIssueSend {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageIssueSend */
+  /** Create JSON Object for MainApiV1MessageIssueResponse */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -516,28 +516,28 @@ class MainApiV1MessageIssueSend {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageIssueSend */
+  /** Return String representation of MainApiV1MessageIssueResponse */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageIssueSendCollection {
+class MainApiV1MessageIssueResponseCollection {
 
-  core.List<MainApiV1MessageIssueSend> items;
+  core.List<MainApiV1MessageIssueResponse> items;
 
   core.String pagination;
 
-  /** Create new MainApiV1MessageIssueSendCollection from JSON data */
-  MainApiV1MessageIssueSendCollection.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageIssueResponseCollection from JSON data */
+  MainApiV1MessageIssueResponseCollection.fromJson(core.Map json) {
     if (json.containsKey("items")) {
-      items = json["items"].map((itemsItem) => new MainApiV1MessageIssueSend.fromJson(itemsItem)).toList();
+      items = json["items"].map((itemsItem) => new MainApiV1MessageIssueResponse.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("pagination")) {
       pagination = json["pagination"];
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageIssueSendCollection */
+  /** Create JSON Object for MainApiV1MessageIssueResponseCollection */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -551,12 +551,12 @@ class MainApiV1MessageIssueSendCollection {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageIssueSendCollection */
+  /** Return String representation of MainApiV1MessageIssueResponseCollection */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageProjectReceive {
+class MainApiV1MessageProjectRequest {
 
   core.List<core.String> admin;
 
@@ -574,8 +574,8 @@ class MainApiV1MessageProjectReceive {
 
   core.String name;
 
-  /** Create new MainApiV1MessageProjectReceive from JSON data */
-  MainApiV1MessageProjectReceive.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageProjectRequest from JSON data */
+  MainApiV1MessageProjectRequest.fromJson(core.Map json) {
     if (json.containsKey("admin")) {
       admin = json["admin"].toList();
     }
@@ -602,7 +602,7 @@ class MainApiV1MessageProjectReceive {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageProjectReceive */
+  /** Create JSON Object for MainApiV1MessageProjectRequest */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -634,19 +634,19 @@ class MainApiV1MessageProjectReceive {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageProjectReceive */
+  /** Return String representation of MainApiV1MessageProjectRequest */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageProjectReceiveDelete {
+class MainApiV1MessageProjectRequestDelete {
 
   core.int key;
 
   core.String name;
 
-  /** Create new MainApiV1MessageProjectReceiveDelete from JSON data */
-  MainApiV1MessageProjectReceiveDelete.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageProjectRequestDelete from JSON data */
+  MainApiV1MessageProjectRequestDelete.fromJson(core.Map json) {
     if (json.containsKey("key")) {
       key = (json["key"] is core.String) ? core.int.parse(json["key"]) : json["key"];
     }
@@ -655,7 +655,7 @@ class MainApiV1MessageProjectReceiveDelete {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageProjectReceiveDelete */
+  /** Create JSON Object for MainApiV1MessageProjectRequestDelete */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -669,23 +669,23 @@ class MainApiV1MessageProjectReceiveDelete {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageProjectReceiveDelete */
+  /** Return String representation of MainApiV1MessageProjectRequestDelete */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageProjectReceiveList {
+class MainApiV1MessageProjectRequestList {
 
   core.String pagination;
 
-  /** Create new MainApiV1MessageProjectReceiveList from JSON data */
-  MainApiV1MessageProjectReceiveList.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageProjectRequestList from JSON data */
+  MainApiV1MessageProjectRequestList.fromJson(core.Map json) {
     if (json.containsKey("pagination")) {
       pagination = json["pagination"];
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageProjectReceiveList */
+  /** Create JSON Object for MainApiV1MessageProjectRequestList */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -696,12 +696,12 @@ class MainApiV1MessageProjectReceiveList {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageProjectReceiveList */
+  /** Return String representation of MainApiV1MessageProjectRequestList */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageProjectReceiveNew {
+class MainApiV1MessageProjectRequestNew {
 
   core.String description;
 
@@ -709,8 +709,8 @@ class MainApiV1MessageProjectReceiveNew {
 
   core.String name;
 
-  /** Create new MainApiV1MessageProjectReceiveNew from JSON data */
-  MainApiV1MessageProjectReceiveNew.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageProjectRequestNew from JSON data */
+  MainApiV1MessageProjectRequestNew.fromJson(core.Map json) {
     if (json.containsKey("description")) {
       description = json["description"];
     }
@@ -722,7 +722,7 @@ class MainApiV1MessageProjectReceiveNew {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageProjectReceiveNew */
+  /** Create JSON Object for MainApiV1MessageProjectRequestNew */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -739,19 +739,19 @@ class MainApiV1MessageProjectReceiveNew {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageProjectReceiveNew */
+  /** Return String representation of MainApiV1MessageProjectRequestNew */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageProjectReceiveSearch {
+class MainApiV1MessageProjectRequestSearch {
 
   core.String pagination;
 
   core.String query;
 
-  /** Create new MainApiV1MessageProjectReceiveSearch from JSON data */
-  MainApiV1MessageProjectReceiveSearch.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageProjectRequestSearch from JSON data */
+  MainApiV1MessageProjectRequestSearch.fromJson(core.Map json) {
     if (json.containsKey("pagination")) {
       pagination = json["pagination"];
     }
@@ -760,7 +760,7 @@ class MainApiV1MessageProjectReceiveSearch {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageProjectReceiveSearch */
+  /** Create JSON Object for MainApiV1MessageProjectRequestSearch */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -774,12 +774,12 @@ class MainApiV1MessageProjectReceiveSearch {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageProjectReceiveSearch */
+  /** Return String representation of MainApiV1MessageProjectRequestSearch */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageProjectSend {
+class MainApiV1MessageProjectResponse {
 
   core.List<core.String> admin;
 
@@ -797,8 +797,8 @@ class MainApiV1MessageProjectSend {
 
   core.String name;
 
-  /** Create new MainApiV1MessageProjectSend from JSON data */
-  MainApiV1MessageProjectSend.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageProjectResponse from JSON data */
+  MainApiV1MessageProjectResponse.fromJson(core.Map json) {
     if (json.containsKey("admin")) {
       admin = json["admin"].toList();
     }
@@ -825,7 +825,7 @@ class MainApiV1MessageProjectSend {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageProjectSend */
+  /** Create JSON Object for MainApiV1MessageProjectResponse */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -857,28 +857,28 @@ class MainApiV1MessageProjectSend {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageProjectSend */
+  /** Return String representation of MainApiV1MessageProjectResponse */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageProjectSendCollection {
+class MainApiV1MessageProjectResponseCollection {
 
-  core.List<MainApiV1MessageProjectSend> items;
+  core.List<MainApiV1MessageProjectResponse> items;
 
   core.String pagination;
 
-  /** Create new MainApiV1MessageProjectSendCollection from JSON data */
-  MainApiV1MessageProjectSendCollection.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageProjectResponseCollection from JSON data */
+  MainApiV1MessageProjectResponseCollection.fromJson(core.Map json) {
     if (json.containsKey("items")) {
-      items = json["items"].map((itemsItem) => new MainApiV1MessageProjectSend.fromJson(itemsItem)).toList();
+      items = json["items"].map((itemsItem) => new MainApiV1MessageProjectResponse.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("pagination")) {
       pagination = json["pagination"];
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageProjectSendCollection */
+  /** Create JSON Object for MainApiV1MessageProjectResponseCollection */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -892,19 +892,19 @@ class MainApiV1MessageProjectSendCollection {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageProjectSendCollection */
+  /** Return String representation of MainApiV1MessageProjectResponseCollection */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageUserReceive {
+class MainApiV1MessageUserRequest {
 
   core.String language;
 
   core.String name;
 
-  /** Create new MainApiV1MessageUserReceive from JSON data */
-  MainApiV1MessageUserReceive.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageUserRequest from JSON data */
+  MainApiV1MessageUserRequest.fromJson(core.Map json) {
     if (json.containsKey("language")) {
       language = json["language"];
     }
@@ -913,7 +913,7 @@ class MainApiV1MessageUserReceive {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageUserReceive */
+  /** Create JSON Object for MainApiV1MessageUserRequest */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -927,19 +927,19 @@ class MainApiV1MessageUserReceive {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageUserReceive */
+  /** Return String representation of MainApiV1MessageUserRequest */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageUserReceiveDelete {
+class MainApiV1MessageUserRequestDelete {
 
   core.String key;
 
   core.String name;
 
-  /** Create new MainApiV1MessageUserReceiveDelete from JSON data */
-  MainApiV1MessageUserReceiveDelete.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageUserRequestDelete from JSON data */
+  MainApiV1MessageUserRequestDelete.fromJson(core.Map json) {
     if (json.containsKey("key")) {
       key = json["key"];
     }
@@ -948,7 +948,7 @@ class MainApiV1MessageUserReceiveDelete {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageUserReceiveDelete */
+  /** Create JSON Object for MainApiV1MessageUserRequestDelete */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -962,23 +962,23 @@ class MainApiV1MessageUserReceiveDelete {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageUserReceiveDelete */
+  /** Return String representation of MainApiV1MessageUserRequestDelete */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageUserReceiveList {
+class MainApiV1MessageUserRequestList {
 
   core.String key;
 
-  /** Create new MainApiV1MessageUserReceiveList from JSON data */
-  MainApiV1MessageUserReceiveList.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageUserRequestList from JSON data */
+  MainApiV1MessageUserRequestList.fromJson(core.Map json) {
     if (json.containsKey("key")) {
       key = json["key"];
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageUserReceiveList */
+  /** Create JSON Object for MainApiV1MessageUserRequestList */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -989,23 +989,23 @@ class MainApiV1MessageUserReceiveList {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageUserReceiveList */
+  /** Return String representation of MainApiV1MessageUserRequestList */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageUserReceiveListCollection {
+class MainApiV1MessageUserRequestListCollection {
 
-  core.List<MainApiV1MessageUserReceiveList> items;
+  core.List<MainApiV1MessageUserRequestList> items;
 
-  /** Create new MainApiV1MessageUserReceiveListCollection from JSON data */
-  MainApiV1MessageUserReceiveListCollection.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageUserRequestListCollection from JSON data */
+  MainApiV1MessageUserRequestListCollection.fromJson(core.Map json) {
     if (json.containsKey("items")) {
-      items = json["items"].map((itemsItem) => new MainApiV1MessageUserReceiveList.fromJson(itemsItem)).toList();
+      items = json["items"].map((itemsItem) => new MainApiV1MessageUserRequestList.fromJson(itemsItem)).toList();
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageUserReceiveListCollection */
+  /** Create JSON Object for MainApiV1MessageUserRequestListCollection */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -1016,19 +1016,19 @@ class MainApiV1MessageUserReceiveListCollection {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageUserReceiveListCollection */
+  /** Return String representation of MainApiV1MessageUserRequestListCollection */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageUserReceiveSearch {
+class MainApiV1MessageUserRequestSearch {
 
   core.String pagination;
 
   core.String query;
 
-  /** Create new MainApiV1MessageUserReceiveSearch from JSON data */
-  MainApiV1MessageUserReceiveSearch.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageUserRequestSearch from JSON data */
+  MainApiV1MessageUserRequestSearch.fromJson(core.Map json) {
     if (json.containsKey("pagination")) {
       pagination = json["pagination"];
     }
@@ -1037,7 +1037,7 @@ class MainApiV1MessageUserReceiveSearch {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageUserReceiveSearch */
+  /** Create JSON Object for MainApiV1MessageUserRequestSearch */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -1051,12 +1051,12 @@ class MainApiV1MessageUserReceiveSearch {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageUserReceiveSearch */
+  /** Return String representation of MainApiV1MessageUserRequestSearch */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageUserSend {
+class MainApiV1MessageUserResponse {
 
   core.String key;
 
@@ -1064,8 +1064,8 @@ class MainApiV1MessageUserSend {
 
   core.String name;
 
-  /** Create new MainApiV1MessageUserSend from JSON data */
-  MainApiV1MessageUserSend.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageUserResponse from JSON data */
+  MainApiV1MessageUserResponse.fromJson(core.Map json) {
     if (json.containsKey("key")) {
       key = json["key"];
     }
@@ -1077,7 +1077,7 @@ class MainApiV1MessageUserSend {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageUserSend */
+  /** Create JSON Object for MainApiV1MessageUserResponse */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -1094,28 +1094,28 @@ class MainApiV1MessageUserSend {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageUserSend */
+  /** Return String representation of MainApiV1MessageUserResponse */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageUserSendCollection {
+class MainApiV1MessageUserResponseCollection {
 
-  core.List<MainApiV1MessageUserSend> items;
+  core.List<MainApiV1MessageUserResponse> items;
 
   core.String pagination;
 
-  /** Create new MainApiV1MessageUserSendCollection from JSON data */
-  MainApiV1MessageUserSendCollection.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageUserResponseCollection from JSON data */
+  MainApiV1MessageUserResponseCollection.fromJson(core.Map json) {
     if (json.containsKey("items")) {
-      items = json["items"].map((itemsItem) => new MainApiV1MessageUserSend.fromJson(itemsItem)).toList();
+      items = json["items"].map((itemsItem) => new MainApiV1MessageUserResponse.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("pagination")) {
       pagination = json["pagination"];
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageUserSendCollection */
+  /** Create JSON Object for MainApiV1MessageUserResponseCollection */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -1129,18 +1129,18 @@ class MainApiV1MessageUserSendCollection {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageUserSendCollection */
+  /** Return String representation of MainApiV1MessageUserResponseCollection */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageWorkLoadReceiveClose {
+class MainApiV1MessageWorkLoadRequestClose {
 
-  /** Create new MainApiV1MessageWorkLoadReceiveClose from JSON data */
-  MainApiV1MessageWorkLoadReceiveClose.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageWorkLoadRequestClose from JSON data */
+  MainApiV1MessageWorkLoadRequestClose.fromJson(core.Map json) {
   }
 
-  /** Create JSON Object for MainApiV1MessageWorkLoadReceiveClose */
+  /** Create JSON Object for MainApiV1MessageWorkLoadRequestClose */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -1148,19 +1148,19 @@ class MainApiV1MessageWorkLoadReceiveClose {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageWorkLoadReceiveClose */
+  /** Return String representation of MainApiV1MessageWorkLoadRequestClose */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageWorkLoadReceiveList {
+class MainApiV1MessageWorkLoadRequestList {
 
   core.String pagination;
 
   core.int project;
 
-  /** Create new MainApiV1MessageWorkLoadReceiveList from JSON data */
-  MainApiV1MessageWorkLoadReceiveList.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageWorkLoadRequestList from JSON data */
+  MainApiV1MessageWorkLoadRequestList.fromJson(core.Map json) {
     if (json.containsKey("pagination")) {
       pagination = json["pagination"];
     }
@@ -1169,7 +1169,7 @@ class MainApiV1MessageWorkLoadReceiveList {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageWorkLoadReceiveList */
+  /** Create JSON Object for MainApiV1MessageWorkLoadRequestList */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -1183,23 +1183,23 @@ class MainApiV1MessageWorkLoadReceiveList {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageWorkLoadReceiveList */
+  /** Return String representation of MainApiV1MessageWorkLoadRequestList */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageWorkLoadReceiveNew {
+class MainApiV1MessageWorkLoadRequestNew {
 
   core.String issue;
 
-  /** Create new MainApiV1MessageWorkLoadReceiveNew from JSON data */
-  MainApiV1MessageWorkLoadReceiveNew.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageWorkLoadRequestNew from JSON data */
+  MainApiV1MessageWorkLoadRequestNew.fromJson(core.Map json) {
     if (json.containsKey("issue")) {
       issue = json["issue"];
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageWorkLoadReceiveNew */
+  /** Create JSON Object for MainApiV1MessageWorkLoadRequestNew */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -1210,12 +1210,12 @@ class MainApiV1MessageWorkLoadReceiveNew {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageWorkLoadReceiveNew */
+  /** Return String representation of MainApiV1MessageWorkLoadRequestNew */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageWorkLoadSend {
+class MainApiV1MessageWorkLoadResponse {
 
   core.String end_at;
 
@@ -1233,8 +1233,8 @@ class MainApiV1MessageWorkLoadSend {
 
   core.String user_name;
 
-  /** Create new MainApiV1MessageWorkLoadSend from JSON data */
-  MainApiV1MessageWorkLoadSend.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageWorkLoadResponse from JSON data */
+  MainApiV1MessageWorkLoadResponse.fromJson(core.Map json) {
     if (json.containsKey("end_at")) {
       end_at = json["end_at"];
     }
@@ -1261,7 +1261,7 @@ class MainApiV1MessageWorkLoadSend {
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageWorkLoadSend */
+  /** Create JSON Object for MainApiV1MessageWorkLoadResponse */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -1293,28 +1293,28 @@ class MainApiV1MessageWorkLoadSend {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageWorkLoadSend */
+  /** Return String representation of MainApiV1MessageWorkLoadResponse */
   core.String toString() => JSON.encode(this.toJson());
 
 }
 
-class MainApiV1MessageWorkLoadSendCollection {
+class MainApiV1MessageWorkLoadResponseCollection {
 
-  core.List<MainApiV1MessageWorkLoadSend> items;
+  core.List<MainApiV1MessageWorkLoadResponse> items;
 
   core.String pagination;
 
-  /** Create new MainApiV1MessageWorkLoadSendCollection from JSON data */
-  MainApiV1MessageWorkLoadSendCollection.fromJson(core.Map json) {
+  /** Create new MainApiV1MessageWorkLoadResponseCollection from JSON data */
+  MainApiV1MessageWorkLoadResponseCollection.fromJson(core.Map json) {
     if (json.containsKey("items")) {
-      items = json["items"].map((itemsItem) => new MainApiV1MessageWorkLoadSend.fromJson(itemsItem)).toList();
+      items = json["items"].map((itemsItem) => new MainApiV1MessageWorkLoadResponse.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("pagination")) {
       pagination = json["pagination"];
     }
   }
 
-  /** Create JSON Object for MainApiV1MessageWorkLoadSendCollection */
+  /** Create JSON Object for MainApiV1MessageWorkLoadResponseCollection */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -1328,7 +1328,7 @@ class MainApiV1MessageWorkLoadSendCollection {
     return output;
   }
 
-  /** Return String representation of MainApiV1MessageWorkLoadSendCollection */
+  /** Return String representation of MainApiV1MessageWorkLoadResponseCollection */
   core.String toString() => JSON.encode(this.toJson());
 
 }
