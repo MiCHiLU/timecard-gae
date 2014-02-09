@@ -18,7 +18,7 @@ rate_limit = tap.endpoints.rate_limit(rate=50, size=50, key=tap.endpoints.get_us
 @api.api_class(resource_name="workload", path="workload")
 class WorkLoad(tap.endpoints.CRUDService):
 
-  @endpoints.method(message.WorkLoadReceiveList, message.WorkLoadSendCollection)
+  @endpoints.method(message.WorkLoadRequestList, message.WorkLoadResponseCollection)
   @ndb.toplevel
   @rate_limit
   def list(self, request):
@@ -65,7 +65,7 @@ class WorkLoad(tap.endpoints.CRUDService):
         project_name,
         issue_subject,
       ) = model.ActiveWorkLoad.parse_key(activeworkload_key)
-      items.append(message.WorkLoadSend(
+      items.append(message.WorkLoadResponse(
         issue         = issue_key.string_id(),
         end_at        = None,
         user          = user_key.string_id(),
@@ -86,7 +86,7 @@ class WorkLoad(tap.endpoints.CRUDService):
         project_name,
         issue_subject,
       ) = model.WorkLoad.parse_key(workload_key)
-      items.append(message.WorkLoadSend(
+      items.append(message.WorkLoadResponse(
         issue         = issue_key.string_id(),
         end_at        = end_at,
         user          = user_key.string_id(),
@@ -96,12 +96,12 @@ class WorkLoad(tap.endpoints.CRUDService):
         issue_subject = issue_subject,
         user_name     = user_name,
       ))
-    raise ndb.Return(message.WorkLoadSendCollection(
+    raise ndb.Return(message.WorkLoadResponseCollection(
       items = items,
       pagination = cursor.urlsafe() if more else None,
     ))
 
-  @endpoints.method(message.WorkLoadReceiveNew, message.WorkLoadSend)
+  @endpoints.method(message.WorkLoadRequestNew, message.WorkLoadResponse)
   @ndb.toplevel
   @rate_limit
   def create(self, request):
@@ -141,7 +141,7 @@ class WorkLoad(tap.endpoints.CRUDService):
     )
     _activeworkload_key = yield activeworkload.put_async()
 
-    raise ndb.Return(message.WorkLoadSend(
+    raise ndb.Return(message.WorkLoadResponse(
       issue         = activeworkload.issue_key.string_id(),
       end_at        = None,
       user          = user.key.string_id(),
@@ -152,7 +152,7 @@ class WorkLoad(tap.endpoints.CRUDService):
       user_name     = activeworkload.user_name,
     ))
 
-  @endpoints.method(message_types.VoidMessage, message.WorkLoadSend)
+  @endpoints.method(message_types.VoidMessage, message.WorkLoadResponse)
   @ndb.toplevel
   @rate_limit
   def get(self, _request):
@@ -179,7 +179,7 @@ class WorkLoad(tap.endpoints.CRUDService):
       issue_subject,
     ) = model.ActiveWorkLoad.parse_key(activeworkload_key)
 
-    raise ndb.Return(message.WorkLoadSend(
+    raise ndb.Return(message.WorkLoadResponse(
       issue         = issue_key.string_id(),
       end_at        = None,
       user          = user_key.string_id(),
@@ -190,7 +190,7 @@ class WorkLoad(tap.endpoints.CRUDService):
       user_name     = user_name,
     ))
 
-  @endpoints.method(message.WorkLoadReceiveClose, message.WorkLoadSend)
+  @endpoints.method(message.WorkLoadRequestClose, message.WorkLoadResponse)
   @ndb.toplevel
   @rate_limit
   def finish(self, _request):
@@ -253,7 +253,7 @@ class WorkLoad(tap.endpoints.CRUDService):
 
     transaction()
 
-    raise ndb.Return(message.WorkLoadSend(
+    raise ndb.Return(message.WorkLoadResponse(
       issue         = issue_key.string_id(),
       end_at        = end_at,
       user          = user_key.string_id(),

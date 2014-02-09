@@ -23,7 +23,7 @@ rate_limit = tap.endpoints.rate_limit(rate=50, size=50, key=tap.endpoints.get_us
 @api.api_class(resource_name="project", path="project")
 class Project(tap.endpoints.CRUDService):
 
-  @endpoints.method(message.ProjectReceiveList, message.ProjectSendCollection)
+  @endpoints.method(message.ProjectRequestList, message.ProjectResponseCollection)
   @ndb.toplevel
   @rate_limit
   def list(self, request):
@@ -48,7 +48,7 @@ class Project(tap.endpoints.CRUDService):
 
     items = list()
     for project in entities:
-      items.append(message.ProjectSend(
+      items.append(message.ProjectResponse(
         key         = project.key.integer_id(),
         name        = project.name       ,
         description = project.description,
@@ -58,12 +58,12 @@ class Project(tap.endpoints.CRUDService):
         member      = [key.string_id() for key in project.member],
         language    = project.language      ,
       ))
-    raise ndb.Return(message.ProjectSendCollection(
+    raise ndb.Return(message.ProjectResponseCollection(
       items = items,
       pagination = cursor.urlsafe() if more else None,
     ))
 
-  @endpoints.method(message.ProjectReceiveSearch, message.ProjectSendCollection)
+  @endpoints.method(message.ProjectRequestSearch, message.ProjectResponseCollection)
   @ndb.toplevel
   @rate_limit
   def search(self, request):
@@ -92,7 +92,7 @@ class Project(tap.endpoints.CRUDService):
     for project in entities:
       if project is None:
         continue
-      items.append(message.ProjectSend(
+      items.append(message.ProjectResponse(
         key         = project.key.integer_id(),
         name        = project.name       ,
         description = project.description,
@@ -108,12 +108,12 @@ class Project(tap.endpoints.CRUDService):
     else:
       cursor_string = None
 
-    raise ndb.Return(message.ProjectSendCollection(
+    raise ndb.Return(message.ProjectResponseCollection(
       items = items,
       pagination = cursor_string,
     ))
 
-  @endpoints.method(message.ProjectReceiveNew, message.ProjectSend)
+  @endpoints.method(message.ProjectRequestNew, message.ProjectResponse)
   @ndb.toplevel
   @rate_limit
   def create(self, request):
@@ -137,7 +137,7 @@ class Project(tap.endpoints.CRUDService):
     if project.is_public:
       ProjectSearchIndex.update(project, will_un_public=False)
 
-    raise ndb.Return(message.ProjectSend(
+    raise ndb.Return(message.ProjectResponse(
       key         = project.key.integer_id(),
       name        = project.name       ,
       description = project.description,
@@ -148,7 +148,7 @@ class Project(tap.endpoints.CRUDService):
       language    = project.language      ,
     ))
 
-  @endpoints.method(message.ProjectReceive, message.ProjectSend)
+  @endpoints.method(message.ProjectRequest, message.ProjectResponse)
   @ndb.toplevel
   @rate_limit
   def update(self, request):
@@ -207,7 +207,7 @@ class Project(tap.endpoints.CRUDService):
 
     ProjectSearchIndex.update(project, will_un_public)
 
-    raise ndb.Return(message.ProjectSend(
+    raise ndb.Return(message.ProjectResponse(
       key         = project.key.integer_id(),
       name        = project.name       ,
       description = project.description,
@@ -218,7 +218,7 @@ class Project(tap.endpoints.CRUDService):
       language    = project.language      ,
     ))
 
-  @endpoints.method(message.ProjectReceiveDelete, message_types.VoidMessage)
+  @endpoints.method(message.ProjectRequestDelete, message_types.VoidMessage)
   @ndb.toplevel
   @rate_limit
   def delete(self, request):

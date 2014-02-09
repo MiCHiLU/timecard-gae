@@ -15,7 +15,7 @@ rate_limit = tap.endpoints.rate_limit(rate=50, size=50, key=tap.endpoints.get_us
 @api.api_class(resource_name="comment", path="comment")
 class Comment(tap.endpoints.CRUDService):
 
-  @endpoints.method(message.CommentReceiveList, message.CommentSendCollection)
+  @endpoints.method(message.CommentRequestList, message.CommentResponseCollection)
   @ndb.toplevel
   @rate_limit
   def list(self, request):
@@ -57,7 +57,7 @@ class Comment(tap.endpoints.CRUDService):
 
     items = list()
     for comment in entities:
-      items.append(message.CommentSend(
+      items.append(message.CommentResponse(
         issue         = comment.issue_key.string_id(),
         body          = comment.body,
         key           = comment.key.string_id(),
@@ -67,12 +67,12 @@ class Comment(tap.endpoints.CRUDService):
         author_name   = comment.author_name,
         update_at     = comment.update_at if hasattr(comment, "update_at") else None,
       ))
-    raise ndb.Return(message.CommentSendCollection(
+    raise ndb.Return(message.CommentResponseCollection(
       items = items,
       pagination = cursor.urlsafe() if more else None,
     ))
 
-  @endpoints.method(message.CommentReceive, message.CommentSend)
+  @endpoints.method(message.CommentRequest, message.CommentResponse)
   @ndb.toplevel
   @rate_limit
   def create(self, request):
@@ -97,7 +97,7 @@ class Comment(tap.endpoints.CRUDService):
     )
     _comment_key = yield comment.put_async()
 
-    raise ndb.Return(message.CommentSend(
+    raise ndb.Return(message.CommentResponse(
       issue         = comment.issue_key.string_id(),
       body          = comment.body,
       key           = comment.key.string_id(),
@@ -108,7 +108,7 @@ class Comment(tap.endpoints.CRUDService):
       update_at     = comment.update_at if hasattr(comment, "update_at") else None,
     ))
 
-  @endpoints.method(message.CommentReceiveUpdate, message.CommentSend)
+  @endpoints.method(message.CommentRequestUpdate, message.CommentResponse)
   @ndb.toplevel
   @rate_limit
   def update(self, request):
@@ -127,7 +127,7 @@ class Comment(tap.endpoints.CRUDService):
     comment.update_at = datetime.utcnow()
     _comment_key = yield comment.put_async()
 
-    raise ndb.Return(message.CommentSend(
+    raise ndb.Return(message.CommentResponse(
       issue         = comment.issue_key.string_id(),
       body          = comment.body,
       key           = comment.key.string_id(),

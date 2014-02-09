@@ -21,7 +21,7 @@ rate_limit = tap.endpoints.rate_limit(rate=50, size=50, key=tap.endpoints.get_us
 @api.api_class(resource_name="issue", path="issue")
 class Issue(tap.endpoints.CRUDService):
 
-  @endpoints.method(message.IssueReceiveList, message.IssueSendCollection)
+  @endpoints.method(message.IssueRequestList, message.IssueResponseCollection)
   @ndb.toplevel
   @rate_limit
   def list(self, request):
@@ -52,7 +52,7 @@ class Issue(tap.endpoints.CRUDService):
 
     items = list()
     for issue in entities:
-      items.append(message.IssueSend(
+      items.append(message.IssueResponse(
         project       = issue.project_key.integer_id()      ,
         subject       = issue.subject      ,
         description   = issue.description  ,
@@ -62,12 +62,12 @@ class Issue(tap.endpoints.CRUDService):
         will_start_at = issue.will_start_at,
         author        = issue.author_key.integer_id()       ,
       ))
-    raise ndb.Return(message.IssueSendCollection(
+    raise ndb.Return(message.IssueResponseCollection(
       items = items,
       pagination = cursor.urlsafe() if more else None,
     ))
 
-  @endpoints.method(message.IssueReceiveSearch, message.IssueSendCollection)
+  @endpoints.method(message.IssueRequestSearch, message.IssueResponseCollection)
   @ndb.toplevel
   @rate_limit
   def search(self, request):
@@ -111,7 +111,7 @@ class Issue(tap.endpoints.CRUDService):
 
     items = list()
     for issue in entities:
-      items.append(message.IssueSend(
+      items.append(message.IssueResponse(
         project       = issue.project_key.integer_id()      ,
         subject       = issue.subject      ,
         description   = issue.description  ,
@@ -127,12 +127,12 @@ class Issue(tap.endpoints.CRUDService):
     else:
       cursor_string = None
 
-    raise ndb.Return(message.IssueSendCollection(
+    raise ndb.Return(message.IssueResponseCollection(
       items = items,
       pagination = cursor_string,
     ))
 
-  @endpoints.method(message.IssueReceiveNew, message.IssueSend)
+  @endpoints.method(message.IssueRequestNew, message.IssueResponse)
   @ndb.toplevel
   @rate_limit
   def create(self, request):
@@ -170,7 +170,7 @@ class Issue(tap.endpoints.CRUDService):
 
     IssueSearchIndex.update(issue, project)
 
-    raise ndb.Return(message.IssueSend(
+    raise ndb.Return(message.IssueResponse(
       project       = issue.project_key.integer_id()  ,
       subject       = issue.subject      ,
       description   = issue.description  ,
@@ -181,7 +181,7 @@ class Issue(tap.endpoints.CRUDService):
       author        = issue.author_key.integer_id()       ,
     ))
 
-  @endpoints.method(message.IssueReceive, message.IssueSend)
+  @endpoints.method(message.IssueRequest, message.IssueResponse)
   @ndb.toplevel
   @rate_limit
   def update(self, request):
@@ -205,7 +205,7 @@ class Issue(tap.endpoints.CRUDService):
 
     IssueSearchIndex.update(issue, project)
 
-    raise ndb.Return(message.IssueSend(
+    raise ndb.Return(message.IssueResponse(
       project       = issue.project_key.integer_id()  ,
       subject       = issue.subject      ,
       description   = issue.description  ,
@@ -216,7 +216,7 @@ class Issue(tap.endpoints.CRUDService):
       author        = issue.author_key.string_id()       ,
     ))
 
-  @endpoints.method(message.IssueReceiveToggle, message.IssueSend)
+  @endpoints.method(message.IssueRequestToggle, message.IssueResponse)
   @ndb.toplevel
   @rate_limit
   def close(self, request):
@@ -235,7 +235,7 @@ class Issue(tap.endpoints.CRUDService):
     issue.closed_on   = datetime.utcnow()
     _issue_key = yield issue.put_async()
 
-    raise ndb.Return(message.IssueSend(
+    raise ndb.Return(message.IssueResponse(
       project       = issue.project_key.integer_id()  ,
       subject       = issue.subject      ,
       description   = issue.description  ,
@@ -246,7 +246,7 @@ class Issue(tap.endpoints.CRUDService):
       author        = issue.author_key.string_id()       ,
     ))
 
-  @endpoints.method(message.IssueReceiveToggle, message.IssueSend)
+  @endpoints.method(message.IssueRequestToggle, message.IssueResponse)
   @ndb.toplevel
   @rate_limit
   def reopen(self, request):
@@ -265,7 +265,7 @@ class Issue(tap.endpoints.CRUDService):
     issue.closed_on   = None
     _issue_key = yield issue.put_async()
 
-    raise ndb.Return(message.IssueSend(
+    raise ndb.Return(message.IssueResponse(
       project       = issue.project_key.integer_id()  ,
       subject       = issue.subject      ,
       description   = issue.description  ,

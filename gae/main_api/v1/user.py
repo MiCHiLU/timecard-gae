@@ -32,7 +32,7 @@ class user(object):
 @api.api_class(resource_name="me", path="me")
 class Me(tap.endpoints.CRUDService):
 
-  @endpoints.method(message_types.VoidMessage, message.UserSend)
+  @endpoints.method(message_types.VoidMessage, message.UserResponse)
   @ndb.toplevel
   @rate_limit
   def get(self, _request):
@@ -41,13 +41,13 @@ class Me(tap.endpoints.CRUDService):
     if entity is None:
       raise endpoints.NotFoundException()
 
-    raise ndb.Return(message.UserSend(
+    raise ndb.Return(message.UserResponse(
       key       = entity.key.string_id(),
       name      = entity.name,
       language  = entity.language,
     ))
 
-  @endpoints.method(message.UserReceive, message.UserSend)
+  @endpoints.method(message.UserRequest, message.UserResponse)
   @ndb.toplevel
   @rate_limit
   def create(self, request):
@@ -77,13 +77,13 @@ class Me(tap.endpoints.CRUDService):
     except Exception as e:
       raise endpoints.BadRequestException(e.message)
     UserSearchIndex.update(entity)
-    raise ndb.Return(message.UserSend(
+    raise ndb.Return(message.UserResponse(
       key       = entity.key.string_id(),
       name      = entity.name,
       language  = entity.language,
     ))
 
-  @endpoints.method(message.UserReceive, message.UserSend)
+  @endpoints.method(message.UserRequest, message.UserResponse)
   @ndb.toplevel
   @rate_limit
   def update(self, request):
@@ -111,13 +111,13 @@ class Me(tap.endpoints.CRUDService):
     except Exception as e:
       raise endpoints.BadRequestException(e.message)
     UserSearchIndex.update(entity)
-    raise ndb.Return(message.UserSend(
+    raise ndb.Return(message.UserResponse(
       key       = entity.key.string_id(),
       name      = entity.name,
       language  = entity.language,
     ))
 
-  @endpoints.method(message.UserReceiveDelete, message_types.VoidMessage)
+  @endpoints.method(message.UserRequestDelete, message_types.VoidMessage)
   @ndb.toplevel
   @rate_limit
   def delete(self, request):
@@ -145,7 +145,7 @@ class Me(tap.endpoints.CRUDService):
 @api.api_class(resource_name="user", path="user")
 class User(tap.endpoints.CRUDService):
 
-  @endpoints.method(message.UserReceiveListCollection, message.UserSendCollection)
+  @endpoints.method(message.UserRequestListCollection, message.UserResponseCollection)
   @ndb.toplevel
   @rate_limit
   def list(self, request):
@@ -160,14 +160,14 @@ class User(tap.endpoints.CRUDService):
     for user in entities:
       if user is None:
         continue
-      items.append(message.UserSend(key=user.user_id,
+      items.append(message.UserResponse(key=user.user_id,
                                     name=user.name,
                                     language=user.language))
-    raise ndb.Return(message.UserSendCollection(
+    raise ndb.Return(message.UserResponseCollection(
       items = items,
     ))
 
-  @endpoints.method(message.UserReceiveSearch, message.UserSendCollection)
+  @endpoints.method(message.UserRequestSearch, message.UserResponseCollection)
   @ndb.toplevel
   @rate_limit
   def search(self, request):
@@ -191,14 +191,14 @@ class User(tap.endpoints.CRUDService):
       for user in entities:
         if user is None:
           continue
-        items.append(message.UserSend(key=user.user_id,
+        items.append(message.UserResponse(key=user.user_id,
                                       name=user.name,
                                       language=user.language))
     if documents.cursor:
       cursor_string = documents.cursor.web_safe_string
     else:
       cursor_string = None
-    raise ndb.Return(message.UserSendCollection(
+    raise ndb.Return(message.UserResponseCollection(
       items = items,
       pagination = cursor_string,
     ))
