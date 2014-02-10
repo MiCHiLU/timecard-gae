@@ -36,6 +36,7 @@ class Controller {
     request.open("GET", revoke_url);
     request.onLoad.listen((event) {
       auth.logout();
+      token = null;
       user = null;
       logged_in = false;
     });
