@@ -1,7 +1,7 @@
-import 'package:intl/intl.dart';
 import "package:angular/angular.dart";
-import "package:timecard_dev_api/timecard_dev_api_browser.dart";
 import "package:google_oauth2_client/google_oauth2_browser.dart";
+import "package:timecard_dev_api/timecard_dev_api_browser.dart";
+import 'package:intl/intl.dart';
 
 @NgController(
     selector: "[app]",
