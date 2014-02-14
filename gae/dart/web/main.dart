@@ -16,7 +16,6 @@ class Controller {
   GoogleOAuth2 auth;
   Timecard endpoint;
   var token;
-  bool logged_in = false;
   var user;
 
   Controller() {
@@ -24,6 +23,14 @@ class Controller {
     endpoint = new Timecard(auth);
     endpoint.rootUrl = ROOT_URL;
     endpoint.makeAuthRequests = true;
+  }
+
+  bool logged_in() {
+    if (token == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   void login() {
@@ -38,7 +45,6 @@ class Controller {
       auth.logout();
       token = null;
       user = null;
-      logged_in = false;
     });
     request.send();
   }
@@ -47,7 +53,6 @@ class Controller {
     token = auth_token;
     endpoint.me.get().then((response) {
       user = response;
-      logged_in = true;
     });
   }
 }

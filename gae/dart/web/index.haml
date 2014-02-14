@@ -26,13 +26,13 @@
         %li
           %a
             %span.text-muted Projects
-        %li(ng-if="c.logged_in")
+        %li(ng-if="c.logged_in()")
           %a
             %span.text-muted Me
       %ul.nav.navbar-nav.navbar-right(ng-cloak)
-        %li(ng-if="c.logged_in")
+        %li(ng-if="c.logged_in()")
           %a(href="settings") Account settings
-        %li(ng-if="c.logged_in")
+        %li(ng-if="c.logged_in()")
           %a(ng-click="c.logout()") Logout
         -#{% for value, key in language_list %}
         -#{% if value != LANGUAGE %}
@@ -40,10 +40,10 @@
         -#  %a(href="?l={{ value }}") {{ key }}
         -#{% endif %}
         -#{% endfor %}
-        %li(ng-if="!c.logged_in")
+        %li(ng-if="!c.logged_in()")
           %a(ng-click="c.login()") Login
 
-.container(ng-if="!c.logged_in")
+.container(ng-if="!c.logged_in()")
   .row
     .col-lg-12.col-md-12
       .welcome.text-center
