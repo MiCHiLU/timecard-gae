@@ -45,7 +45,7 @@ class Controller {
     String revoke_url = REVOKE_URL + auth.token.data;
     var request = new HttpRequest();
     request.open("GET", revoke_url);
-    request.onLoad.listen((event) {
+    request.onLoad.listen((_event) {
       auth.logout();
       user = null;
     });
