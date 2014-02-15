@@ -37,7 +37,7 @@ test=
 HAML = $(wildcard $(TEMPLATE_DIR_PATH)/*.haml $(GAE_DIR)/static/*.haml)
 HTML = $(HAML:.haml=.html)
 
-DARTHAML = $(wildcard $(DART_DIR_PATH)/web/*.haml)
+DARTHAML = $(foreach dir,$(shell find $(DART_DIR_PATH)/web -type d),$(wildcard $(dir)/*.haml))
 DARTHTML = $(DARTHAML:.haml=.html)
 
 .SUFFIXES: .haml .xhtml
