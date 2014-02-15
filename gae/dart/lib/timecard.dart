@@ -7,6 +7,8 @@ import "package:google_oauth2_client/google_oauth2_browser.dart";
 import "package:timecard_dev_api/timecard_dev_api_browser.dart";
 import 'package:intl/intl.dart';
 
+part 'timecard_route_initializer.dart';
+
 @NgController(
     selector: "[app]",
     publishAs: "c")
@@ -67,9 +69,14 @@ class Footer {
   final year = new DateFormat("y").format(new DateTime.now());
 }
 
+class TimecardApp extends Module {
+  TimecardApp() {
+    type(Controller);
+    type(Footer);
+    type(RouteInitializer, implementedBy: TimecardRouteInitializer);
+  }
+}
+
 startTimecardApp() {
-  var module = new Module()
-    ..type(Controller)
-    ..type(Footer);
-  ngBootstrap(module:module);
+  ngBootstrap(module: new TimecardApp());
 }
