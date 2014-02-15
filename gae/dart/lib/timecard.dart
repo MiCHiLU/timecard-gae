@@ -45,6 +45,7 @@ class Controller {
     request.onLoad.listen((_event) {
       auth.logout();
       user = null;
+      window.location.hash = "/logout";
     });
     request.send();
   }
@@ -68,6 +69,7 @@ class TimecardApp extends Module {
     type(Controller);
     type(Footer);
     type(RouteInitializer, implementedBy: TimecardRouteInitializer);
+    factory(NgRoutingUsePushState, (_) => new NgRoutingUsePushState.value(false));
   }
 }
 

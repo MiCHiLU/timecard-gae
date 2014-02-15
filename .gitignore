@@ -30,6 +30,7 @@ htmlcov
 syntax: regexp
 
 gae/dart/web/*.html
+gae/dart/web/views/*.html
 gae/oauth_config/*.py
 gae/site-packages/*.zip
 gae/site-packages/packages

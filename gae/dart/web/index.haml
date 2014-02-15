@@ -43,26 +43,8 @@
         %li(ng-if="!c.logged_in()")
           %a(ng-click="c.login()") Login
 
-.container(ng-if="!c.logged_in()")
-  .row
-    .col-lg-12.col-md-12
-      .welcome.text-center
-        .jumbotron(style="background-color:#fff;")
-          %h1 Timecard
-          %p.lead
-            Time tracking for your project.
-          .row(style="height:74px; padding:20px 0;")
-            .col-md-3.col-md-offset-2(ng-cloak)
-              %a.btn.btn-primary.btn-block(ng-click="c.login()") Sign in with Google
-            .col-md-3(ng-cloak)
-              %a.btn.btn-default.btn-block.disabled(href="") Sign in with Github
-            .col-md-3(ng-cloak)
-              %a.btn.btn-default.btn-block.disabled(href="") Sign in with Ruffnote
-        %section
-          %h2(style="color:#555555; font-weight:normal;")
-            It is possible to time tracking in connection with the Github Issue.
-          %h2(style="color:#555555; font-weight:normal;")
-            Project owner can see at a glance the working hours of project members.
+.container
+  %ng-view.row
 
 %footer(style="margin-top:100px;")
   %div(style="text-align:center;")
