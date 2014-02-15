@@ -30,11 +30,7 @@ class Controller {
   }
 
   bool logged_in() {
-    if (auth.token == null) {
-      return false;
-    } else {
-      return true;
-    }
+    return auth.token != null;
   }
 
   void login() {
