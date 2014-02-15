@@ -15,9 +15,10 @@ part 'timecard_route_initializer.dart';
 class Controller {
 
   final CLIENT_ID = "636938638718.apps.googleusercontent.com";
-  final SCOPES = ["https://www.googleapis.com/auth/userinfo.email"];
-  final ROOT_URL = "http://localhost:8080/";
   final REVOKE_URL = "https://accounts.google.com/o/oauth2/revoke?token=";
+  final ROOT_URL = "http://localhost:8080/";
+  final SCOPES = ["https://www.googleapis.com/auth/userinfo.email"];
+
   GoogleOAuth2 auth;
   Timecard endpoint;
   var user;
