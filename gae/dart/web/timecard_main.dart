@@ -4,7 +4,7 @@ library timecard_main;
 import "dart:mirrors";
 
 import "package:logging/logging.dart";
-import "package:timecard_AngularDart_client/timecard.dart";
+import "package:timecard_angulardart_client/timecard.dart";
 
 main(){
   Logger.root.level = Level.FINEST;
