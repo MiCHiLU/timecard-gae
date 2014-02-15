@@ -1,4 +1,7 @@
+library timecard;
+
 import "dart:html";
+
 import "package:angular/angular.dart";
 import "package:google_oauth2_client/google_oauth2_browser.dart";
 import "package:timecard_dev_api/timecard_dev_api_browser.dart";
@@ -64,7 +67,7 @@ class Footer {
   final year = new DateFormat("y").format(new DateTime.now());
 }
 
-main() {
+startTimecardApp() {
   var module = new Module()
     ..type(Controller)
     ..type(Footer);
