@@ -24,7 +24,7 @@ class Controller {
   var user;
 
   Controller() {
-    auth = new GoogleOAuth2(CLIENT_ID, SCOPES, tokenLoaded:get_user, autoLogin:true);
+    auth = new GoogleOAuth2(CLIENT_ID, SCOPES, tokenLoaded:post_login, autoLogin:true);
     endpoint = new Timecard(auth);
     endpoint.rootUrl = ROOT_URL;
     endpoint.makeAuthRequests = true;
@@ -35,7 +35,16 @@ class Controller {
   }
 
   void login() {
-    auth.login().then(get_user);
+    auth.login().then(post_login);
+  }
+
+  void post_login(_token) {
+    switch (window.location.hash) {
+      case "#/logout":
+        window.location.hash = "";
+        break;
+    };
+    get_user();
   }
 
   void logout() {
@@ -50,7 +59,7 @@ class Controller {
     request.send();
   }
 
-  void get_user(_token) {
+  void get_user() {
     endpoint.me.get().then((response) {
       user = response;
     });
