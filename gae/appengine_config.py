@@ -5,8 +5,7 @@ appstats_RECORD_FRACTION = 0.1
 
 config_APPS = {
   #{<domain>: ((<path prefix>, <module name>[, <namespace>]),)}
-  "<:localhost|(.*-dot-)?timecard-gae.appspot.com>": (("", "main_app"),),
-  #r"<subdomain:(?!www\.)[^.]+>.local": (("/test", "app_sample"),),
+  #"<:localhost|(.*-dot-)?timecard-gae.appspot.com>": (("", "main_app"),),
 }
 
 # This is a session secret key used by webapp2 framework.

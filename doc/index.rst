@@ -22,10 +22,6 @@ Contents:
   :members:
   :undoc-members:
 
-.. automodule:: main_app
-  :members:
-  :undoc-members:
-
 .. automodule:: appengine_config
   :members:
   :undoc-members:
