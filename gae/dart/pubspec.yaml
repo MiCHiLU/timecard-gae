@@ -1,7 +1,12 @@
-name: timecard_angulardart_client
+name: timecard_client
 version: 0.0.1
 dependencies:
-  angular:
-    path: ../../../../src/angular-0.9.5+2
+  angular: any
+  browser: any
+  js: any
+  shadow_dom: any
   timecard_dev_api:
     path: ../../dart_modules/dart_timecard_dev_api_client
+
+dev_dependencies:
+  unittest: any

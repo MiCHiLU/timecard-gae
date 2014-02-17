@@ -8,7 +8,7 @@
 %link(rel="apple-touch-icon-precomposed" href="/static/img/apple-touch-icon.png")
 %link(rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css")
 %script(src="packages/shadow_dom/shadow_dom.min.js")
-%script(src="timecard_main.dart" type="application/dart")
+%script(src="main.dart" type="application/dart")
 %script(src="packages/browser/dart.js")
 %body(app)/
 
@@ -26,30 +26,25 @@
         %li
           %a
             %span.text-muted Projects
-        %li(ng-if="c.logged_in()")
+        %li(ng-if="a.logged_in()")
           %a
             %span.text-muted Me
       %ul.nav.navbar-nav.navbar-right(ng-cloak)
-        %li(ng-if="c.logged_in()")
-          %a(href="settings") Account settings
-        %li(ng-if="c.logged_in()")
-          %a(ng-click="c.logout()" href="") Logout
+        %li(ng-if="a.logged_in()")
+          %a(href="#/settings") Account settings
+        %li(ng-if="a.logged_in()")
+          %a(ng-click="a.logout()" href="") Logout
         -#{% for value, key in language_list %}
         -#{% if value != LANGUAGE %}
         -#%li
         -#  %a(href="?l={{ value }}") {{ key }}
         -#{% endif %}
         -#{% endfor %}
-        %li(ng-if="!c.logged_in()")
-          %a(ng-click="c.login()" href="") Login
+        %li(ng-if="!a.logged_in()")
+          %a(ng-click="a.login()" href="") Login
 
 .container
   .row
     %ng-view
 
-%footer(style="margin-top:100px;")
-  %div(style="text-align:center;")
-    &copy; Timecard
-    &nbsp; 2013
-    %span(ng-cloak)>-{{ c.year }}
-    %span.text-muted(ng-cloak) {{ version }}
+%footer-component

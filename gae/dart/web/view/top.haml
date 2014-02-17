@@ -5,9 +5,9 @@
       %p.lead
         Time tracking for your project.
       .row(style="height:74px; padding:20px 0;")
-        %div(ng-cloak ng-if="!c.logged_in()")
+        %div(ng-cloak ng-if="!a.logged_in()")
           .col-md-3.col-md-offset-2
-            %a.btn.btn-primary.btn-block(ng-click="c.login()") Sign in with Google
+            %a.btn.btn-primary.btn-block(ng-click="a.login()") Sign in with Google
           .col-md-3
             %a.btn.btn-default.btn-block.disabled(href="") Sign in with Github
           .col-md-3

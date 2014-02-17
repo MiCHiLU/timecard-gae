@@ -1,4 +1,4 @@
-library timecard;
+library timecard_controller;
 
 import "dart:html";
 
@@ -7,11 +7,9 @@ import "package:google_oauth2_client/google_oauth2_browser.dart";
 import "package:timecard_dev_api/timecard_dev_api_browser.dart";
 import 'package:intl/intl.dart';
 
-part 'timecard_route_initializer.dart';
-
 @NgController(
     selector: "[app]",
-    publishAs: "c")
+    publishAs: "a")
 class Controller {
 
   final CLIENT_ID = "636938638718.apps.googleusercontent.com";
@@ -64,24 +62,4 @@ class Controller {
       user = response;
     });
   }
-}
-
-@NgController(
-    selector: "footer",
-    publishAs: "c")
-class Footer {
-  final year = new DateFormat("y").format(new DateTime.now());
-}
-
-class TimecardApp extends Module {
-  TimecardApp() {
-    type(Controller);
-    type(Footer);
-    type(RouteInitializer, implementedBy: TimecardRouteInitializer);
-    factory(NgRoutingUsePushState, (_) => new NgRoutingUsePushState.value(false));
-  }
-}
-
-startTimecardApp() {
-  ngBootstrap(module: new TimecardApp());
 }
