@@ -22,7 +22,15 @@ class Controller {
   var user;
 
   Controller() {
-    auth = new GoogleOAuth2(CLIENT_ID, SCOPES, tokenLoaded:post_login, autoLogin:true);
+    bool autoLogin;
+    switch (window.location.hash) {
+      case "#/logout":
+        autoLogin = false;
+        break;
+      default:
+        autoLogin = true;
+    };
+    auth = new GoogleOAuth2(CLIENT_ID, SCOPES, tokenLoaded:post_login, autoLogin:autoLogin);
     endpoint = new Timecard(auth);
     endpoint.rootUrl = ROOT_URL;
     endpoint.makeAuthRequests = true;
@@ -51,8 +59,8 @@ class Controller {
     request.open("GET", revoke_url);
     request.onLoad.listen((_event) {
       auth.logout();
-      user = null;
       window.location.hash = "/logout";
+      window.location.reload();
     });
     request.send();
   }
