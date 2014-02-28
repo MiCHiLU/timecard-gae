@@ -7,6 +7,7 @@ import "package:logging/logging.dart";
 
 import "package:timecard_client/timecard.dart";
 import "package:timecard_client/routing/timecard_router.dart";
+import "package:timecard_client/component/nav.dart";
 import "package:timecard_client/component/footer.dart";
 
 // Temporary, please follow https://github.com/angular/angular.dart/issues/476
@@ -18,6 +19,7 @@ import "dart:mirrors";
 class MyAppModule extends Module {
   MyAppModule() {
     type(Controller);
+    type(NavComponent);
     type(FooterComponent);
     value(RouteInitializerFn, timecardRouteInitializer);
     factory(NgRoutingUsePushState,
