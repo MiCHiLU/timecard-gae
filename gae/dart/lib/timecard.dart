@@ -25,6 +25,7 @@ class Controller {
     bool autoLogin;
     switch (window.location.hash) {
       case "#/logout":
+      case "#/leave":
         autoLogin = false;
         break;
       default:
@@ -47,19 +48,23 @@ class Controller {
   void post_login(_token) {
     switch (window.location.hash) {
       case "#/logout":
+      case "#/leave":
         window.location.hash = "";
         break;
     };
     get_user();
   }
 
-  void logout() {
+  void logout({String redirect_to: null}) {
+    if (redirect_to == null) {
+      redirect_to = "/logout";
+    }
     String revoke_url = REVOKE_URL + auth.token.data;
     var request = new HttpRequest();
     request.open("GET", revoke_url);
     request.onLoad.listen((_event) {
       auth.logout();
-      window.location.hash = "/logout";
+      window.location.hash = redirect_to;
       window.location.reload();
     });
     request.send();
@@ -74,6 +79,12 @@ class Controller {
   void me_update() {
     endpoint.me.update(user).then((response) {
       user = response;
+    });
+  }
+
+  void me_delete() {
+    endpoint.me.delete(user).then((response) {
+      logout(redirect_to: "/leave");
     });
   }
 }

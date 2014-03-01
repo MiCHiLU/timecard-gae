@@ -7,6 +7,9 @@ timecardRouteInitializer(Router router, ViewFactory views) =>
       "logout": ngRoute(
         path: "/logout",
         view: "view/logout.html"),
+      "leave": ngRoute(
+        path: "/leave",
+        view: "view/leave.html"),
       "settings": ngRoute(
         path: "/settings",
         view: "view/settings.html"),

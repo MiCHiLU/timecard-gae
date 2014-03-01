@@ -12,6 +12,10 @@
     %dd
       %a.btn.btn-default.disabled(href="") Sign in with Ruffnote
   %h3 Cancel my account
-  %p Unhappy?
   %form
-    %input.btn.btn-danger{"data-confirm" => "Are you sure?", :type => "submit", :value => "Cancel my account"}/
+    .checkbox
+      %label
+        %input(type="checkbox" ng-model="confirm")
+        Unhappy?
+    %button.btn.btn-danger.disabled(type="button" ng-hide="confirm") Cancel my account
+    %button.btn.btn-danger(type="button" ng-show="confirm" ng-click="a.me_delete()") Cancel my account
