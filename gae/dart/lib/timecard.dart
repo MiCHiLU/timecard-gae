@@ -70,4 +70,10 @@ class Controller {
       user = response;
     });
   }
+
+  void me_update() {
+    endpoint.me.update(user).then((response) {
+      user = response;
+    });
+  }
 }

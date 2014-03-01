@@ -9,6 +9,7 @@ import "package:timecard_client/timecard.dart";
 import "package:timecard_client/routing/timecard_router.dart";
 import "package:timecard_client/component/nav.dart";
 import "package:timecard_client/component/footer.dart";
+import "package:timecard_client/component/edit_user.dart";
 
 // Temporary, please follow https://github.com/angular/angular.dart/issues/476
 @MirrorsUsed(
@@ -21,6 +22,7 @@ class MyAppModule extends Module {
     type(Controller);
     type(NavComponent);
     type(FooterComponent);
+    type(EditUserComponent);
     value(RouteInitializerFn, timecardRouteInitializer);
     factory(NgRoutingUsePushState,
         (_) => new NgRoutingUsePushState.value(false));
