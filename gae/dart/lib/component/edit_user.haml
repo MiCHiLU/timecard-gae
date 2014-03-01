@@ -1,7 +1,8 @@
 %form(name="edit_user" onsubmit="return false;")
   .form-group
     %label{:for => "name"} Name
-    %input.form-control(name="name" type="text" ng-model="c.a.user.name" required)/
+    %input.form-control(type="text" ng-show="c.a.user==null" readonly)/
+    %input.form-control(name="name" type="text" ng-hide="c.a.user==null" ng-model="c.a.user.name" required)/
   -#.form-group
   -#  %label{:for => "language"} Language
   -#  %select.form-control(name="language" ng-model="language" ng-init="language='{{ a.user.language }}'")
@@ -13,4 +14,5 @@
   -#    {% endif %}
   -#    {% endfor %}
   %div
-    %button.btn.btn-primary(ng-click="c.a.me_update()" ng-disabled="edit_user.$invalid||edit_user.$pristine") Update
+    %button.btn.btn-primary(ng-show="edit_user.pristine||edit_user.invalid" disabled) Update
+    %button.btn.btn-primary(ng-hide="edit_user.pristine||edit_user.invalid" ng-click="c.a.me_update()") Update
