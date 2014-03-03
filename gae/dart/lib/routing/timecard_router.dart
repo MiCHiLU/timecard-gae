@@ -4,6 +4,9 @@ import 'package:angular/angular.dart';
 
 timecardRouteInitializer(Router router, ViewFactory views) =>
     views.configure({
+      "signup": ngRoute(
+        path: "/signup",
+        view: "view/signup.html"),
       "logout": ngRoute(
         path: "/logout",
         view: "view/logout.html"),

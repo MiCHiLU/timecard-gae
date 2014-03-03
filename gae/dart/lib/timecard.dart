@@ -5,6 +5,7 @@ import "dart:html";
 import "package:angular/angular.dart";
 import "package:google_oauth2_client/google_oauth2_browser.dart";
 import "package:timecard_dev_api/timecard_dev_api_browser.dart";
+import "package:timecard_dev_api/timecard_dev_api_client.dart";
 import 'package:intl/intl.dart';
 
 @NgController(
@@ -73,6 +74,18 @@ class Controller {
   void get_user() {
     endpoint.me.get().then((response) {
       user = response;
+    })
+    .catchError((error) {
+      window.location.hash = "/signup";
+    }, test: (e) => e is APIRequestError);
+  }
+
+  void me_create(String name) {
+    var new_user = new MainApiV1MessageUserRequest.fromJson({});
+    new_user.name = name;
+    endpoint.me.create(new_user).then((response) {
+      user = response;
+      window.location.hash = "";
     });
   }
 
