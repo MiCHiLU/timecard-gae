@@ -38,6 +38,10 @@ class Controller {
     endpoint.makeAuthRequests = true;
   }
 
+  bool loading() {
+    return false;
+  }
+
   bool logged_in() {
     return auth.token != null;
   }
