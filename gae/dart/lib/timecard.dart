@@ -28,7 +28,7 @@ class Controller {
   }
 
   void login() {
-    _endpointService.login().then((_token) {
+    _endpointService.login().whenComplete(() {
       switch (window.location.hash) {
         case "#/logout":
         case "#/leave":
