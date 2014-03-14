@@ -18,19 +18,22 @@ class _EndpointService {
   Timecard get endpoint => _endpoint;
 
   _EndpointService() {
-    bool autoLogin;
-    switch (window.location.hash) {
-      case "#/logout":
-      case "#/leave":
-        autoLogin = false;
-        break;
-      default:
-        autoLogin = true;
-    };
-    GoogleOAuth2 auth = new GoogleOAuth2(_CLIENT_ID, _SCOPES, autoLogin:autoLogin);
+    GoogleOAuth2 auth = new GoogleOAuth2(_CLIENT_ID, _SCOPES, autoLogin:autoLogin());
     _endpoint = new Timecard(auth);
     _endpoint.rootUrl = _ROOT_URL;
     _endpoint.makeAuthRequests = true;
+  }
+
+  bool autoLogin() {
+    switch (window.location.hash) {
+      case "#/logout":
+      case "#/leave":
+        return false;
+        break;
+      default:
+        return true;
+        break;
+    };
   }
 
   bool logged_in() {
@@ -76,14 +79,9 @@ class MeService {
   }
 
   Future _loadMe() {
-    switch (window.location.hash) {
-      case "#/logout":
-      case "#/leave":
-        return null;
-        break;
-      default:
-        break;
-    };
+    if (!_endpointService.autoLogin()) {
+      return null;
+    }
     return _endpointService.endpoint.me.get().then((response) {
       user = response;
     })
