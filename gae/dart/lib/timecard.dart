@@ -8,99 +8,55 @@ import "package:timecard_dev_api/timecard_dev_api_browser.dart";
 import "package:timecard_dev_api/timecard_dev_api_client.dart";
 import 'package:intl/intl.dart';
 
+import "package:timecard_client/service/api_service.dart";
+
 @NgController(
     selector: "[app]",
     publishAs: "a")
 class Controller {
+  EndpointService _endpointService;
+  MeService me;
 
-  final CLIENT_ID = "636938638718.apps.googleusercontent.com";
-  final REVOKE_URL = "https://accounts.google.com/o/oauth2/revoke?token=";
-  final ROOT_URL = "http://localhost:8080/";
-  final SCOPES = ["https://www.googleapis.com/auth/userinfo.email"];
-
-  GoogleOAuth2 auth;
-  Timecard endpoint;
-  var user;
-
-  Controller() {
-    bool autoLogin;
-    switch (window.location.hash) {
-      case "#/logout":
-      case "#/leave":
-        autoLogin = false;
-        break;
-      default:
-        autoLogin = true;
-    };
-    auth = new GoogleOAuth2(CLIENT_ID, SCOPES, tokenLoaded:post_login, autoLogin:autoLogin);
-    endpoint = new Timecard(auth);
-    endpoint.rootUrl = ROOT_URL;
-    endpoint.makeAuthRequests = true;
-  }
+  Controller(EndpointService this._endpointService, MeService this.me);
 
   bool loading() {
     return false;
   }
 
   bool logged_in() {
-    return auth.token != null;
+    return _endpointService.logged_in();
   }
 
   void login() {
-    auth.login().then(post_login);
-  }
-
-  void post_login(_token) {
-    switch (window.location.hash) {
-      case "#/logout":
-      case "#/leave":
-        window.location.hash = "";
-        break;
-    };
-    get_user();
+    _endpointService.login().then((_token) {
+      switch (window.location.hash) {
+        case "#/logout":
+        case "#/leave":
+          window.location.hash = "";
+          break;
+      };
+    });
   }
 
   void logout({String redirect_to: null}) {
     if (redirect_to == null) {
       redirect_to = "/logout";
     }
-    String revoke_url = REVOKE_URL + auth.token.data;
-    var request = new HttpRequest();
-    request.open("GET", revoke_url);
-    request.onLoad.listen((_event) {
-      auth.logout();
-      window.location.hash = redirect_to;
-      window.location.reload();
-    });
-    request.send();
-  }
-
-  void get_user() {
-    endpoint.me.get().then((response) {
-      user = response;
-    })
-    .catchError((error) {
-      window.location.hash = "/signup";
-    }, test: (e) => e is APIRequestError);
+    _endpointService.logout(redirect_to: redirect_to);
   }
 
   void me_create(String name) {
-    var new_user = new MainApiV1MessageUserRequest.fromJson({});
-    new_user.name = name;
-    endpoint.me.create(new_user).then((response) {
-      user = response;
+    me.create(name).then((_) {
       window.location.hash = "";
     });
   }
 
   void me_update() {
-    endpoint.me.update(user).then((response) {
-      user = response;
-    });
+    me.update();
   }
 
   void me_delete() {
-    endpoint.me.delete(user).then((response) {
+    me.delete().then((_) {
       logout(redirect_to: "/leave");
     });
   }

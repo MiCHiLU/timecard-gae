@@ -6,6 +6,7 @@ import "package:di/di.dart";
 import "package:logging/logging.dart";
 
 import "package:timecard_client/timecard.dart";
+import "package:timecard_client/service/api_service.dart";
 import "package:timecard_client/routing/timecard_router.dart";
 import "package:timecard_client/component/nav.dart";
 import "package:timecard_client/component/footer.dart";
@@ -13,12 +14,14 @@ import "package:timecard_client/component/edit_user.dart";
 
 // Temporary, please follow https://github.com/angular/angular.dart/issues/476
 @MirrorsUsed(
-  targets: const ["timecard", "timecard_routing"],
+  targets: const ["timecard", "api_service", "timecard_routing"],
   override: "*")
 import "dart:mirrors";
 
 class MyAppModule extends Module {
   MyAppModule() {
+    type(EndpointService);
+    type(MeService);
     type(Controller);
     type(NavComponent);
     type(FooterComponent);
