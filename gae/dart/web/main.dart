@@ -20,6 +20,9 @@ import "dart:mirrors";
 
 class MyAppModule extends Module {
   MyAppModule() {
+    value(EndpointServiceConfig, new EndpointServiceConfig()
+      ..client_id = "636938638718.apps.googleusercontent.com"
+      ..root_url = "http://localhost:8080/");
     type(EndpointService);
     type(MeService);
     type(Controller);

@@ -8,19 +8,22 @@ import "package:google_oauth2_client/google_oauth2_browser.dart";
 import "package:timecard_dev_api/timecard_dev_api_browser.dart";
 import "package:timecard_dev_api/timecard_dev_api_client.dart";
 
-class _EndpointService {
-  final _CLIENT_ID = "_.apps.googleusercontent.com";
-  final _ROOT_URL = "http://localhost:8080/";
+class EndpointServiceConfig {
+  String client_id;
+  String root_url;
+}
+
+class EndpointService {
   final _REVOKE_URL = "https://accounts.google.com/o/oauth2/revoke?token=";
   final _SCOPES = ["https://www.googleapis.com/auth/userinfo.email"];
 
   Timecard _endpoint;
   Timecard get endpoint => _endpoint;
 
-  _EndpointService() {
-    GoogleOAuth2 auth = new GoogleOAuth2(_CLIENT_ID, _SCOPES, autoLogin:autoLogin());
+  EndpointService(EndpointServiceConfig c) {
+    GoogleOAuth2 auth = new GoogleOAuth2(c.client_id, _SCOPES, autoLogin:autoLogin());
     _endpoint = new Timecard(auth);
-    _endpoint.rootUrl = _ROOT_URL;
+    _endpoint.rootUrl = c.root_url;
     _endpoint.makeAuthRequests = true;
   }
 
@@ -58,11 +61,6 @@ class _EndpointService {
     });
     request.send();
   }
-}
-
-class EndpointService extends _EndpointService {
-  final _CLIENT_ID = "636938638718.apps.googleusercontent.com";
-  final _ROOT_URL = "http://localhost:8080/";
 }
 
 class MeService {
