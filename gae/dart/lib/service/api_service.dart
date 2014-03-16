@@ -8,12 +8,15 @@ import "package:google_oauth2_client/google_oauth2_browser.dart";
 import "package:timecard_dev_api/timecard_dev_api_browser.dart";
 import "package:timecard_dev_api/timecard_dev_api_client.dart";
 
+class APIService {
+}
+
 class EndpointServiceConfig {
   String client_id;
   String root_url;
 }
 
-class EndpointService {
+class EndpointService implements APIService {
   final _REVOKE_URL = "https://accounts.google.com/o/oauth2/revoke?token=";
   final _SCOPES = ["https://www.googleapis.com/auth/userinfo.email"];
 

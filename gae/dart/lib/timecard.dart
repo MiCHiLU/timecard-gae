@@ -14,21 +14,21 @@ import "package:timecard_client/service/api_service.dart";
     selector: "[app]",
     publishAs: "a")
 class Controller {
-  EndpointService _endpointService;
+  APIService _apiService;
   MeService me;
 
-  Controller(EndpointService this._endpointService, MeService this.me);
+  Controller(APIService this._apiService, MeService this.me);
 
   bool loading() {
     return false;
   }
 
   bool logged_in() {
-    return _endpointService.logged_in();
+    return _apiService.logged_in();
   }
 
   void login() {
-    _endpointService.login().whenComplete(() {
+    _apiService.login().whenComplete(() {
       switch (window.location.hash) {
         case "#/logout":
         case "#/leave":
@@ -42,7 +42,7 @@ class Controller {
     if (redirect_to == null) {
       redirect_to = "/logout";
     }
-    _endpointService.logout(redirect_to: redirect_to);
+    _apiService.logout(redirect_to: redirect_to);
   }
 
   void me_create(String name) {

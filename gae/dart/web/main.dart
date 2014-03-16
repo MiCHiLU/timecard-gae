@@ -23,6 +23,9 @@ class MyAppModule extends Module {
     value(EndpointServiceConfig, new EndpointServiceConfig()
       ..client_id = "636938638718.apps.googleusercontent.com"
       ..root_url = "http://localhost:8080/");
+    factory(APIService, (Injector inj){
+      return inj.get(EndpointService);
+    });
     type(EndpointService);
     type(MeService);
     type(Controller);
