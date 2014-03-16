@@ -9,6 +9,24 @@ import "package:timecard_dev_api/timecard_dev_api_browser.dart";
 import "package:timecard_dev_api/timecard_dev_api_client.dart";
 
 class APIService {
+  bool logged_in() {
+  }
+
+  Future login() {
+  }
+
+  Future _logout() {
+  }
+
+  void logout({String redirect_to: null}) {
+    if (redirect_to == null) {
+      redirect_to = "/";
+    }
+    _logout().then((_event) {
+      window.location.hash = redirect_to;
+      window.location.reload();
+    });
+  }
 }
 
 class EndpointServiceConfig {
@@ -20,10 +38,11 @@ class EndpointService implements APIService {
   final _REVOKE_URL = "https://accounts.google.com/o/oauth2/revoke?token=";
   final _SCOPES = ["https://www.googleapis.com/auth/userinfo.email"];
 
+  Http _http;
   Timecard _endpoint;
   Timecard get endpoint => _endpoint;
 
-  EndpointService(EndpointServiceConfig c) {
+  EndpointService(EndpointServiceConfig c, Http this._http) {
     GoogleOAuth2 auth = new GoogleOAuth2(c.client_id, _SCOPES, autoLogin:autoLogin());
     _endpoint = new Timecard(auth);
     _endpoint.rootUrl = c.root_url;
@@ -50,19 +69,11 @@ class EndpointService implements APIService {
     return _endpoint.auth.login();
   }
 
-  void logout({String redirect_to: null}) {
-    if (redirect_to == null) {
-      redirect_to = "/";
-    }
+  Future _logout() {
     String revoke_url = _REVOKE_URL + _endpoint.auth.token.data;
-    var request = new HttpRequest();
-    request.open("GET", revoke_url);
-    request.onLoad.listen((_event) {
+    _http.get(revoke_url).then((_response) {
       _endpoint.auth.logout();
-      window.location.hash = redirect_to;
-      window.location.reload();
     });
-    request.send();
   }
 }
 
