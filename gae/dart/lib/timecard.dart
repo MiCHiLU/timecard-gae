@@ -38,10 +38,7 @@ class Controller {
     });
   }
 
-  void logout({String redirect_to: null}) {
-    if (redirect_to == null) {
-      redirect_to = "/logout";
-    }
+  void logout({String redirect_to: "/logout"}) {
     _apiService.logout(redirect_to: redirect_to);
   }
 

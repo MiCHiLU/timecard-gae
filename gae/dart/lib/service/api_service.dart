@@ -18,10 +18,7 @@ class APIService {
   Future _logout() {
   }
 
-  void logout({String redirect_to: null}) {
-    if (redirect_to == null) {
-      redirect_to = "/";
-    }
+  void logout({String redirect_to: "/"}) {
     _logout().then((_event) {
       window.location.hash = redirect_to;
       window.location.reload();
