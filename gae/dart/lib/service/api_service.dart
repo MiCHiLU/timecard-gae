@@ -15,14 +15,13 @@ class APIService {
   Future login() {
   }
 
-  Future _logout() {
+  void _logout(redirect_to) {
+    window.location.hash = redirect_to;
+    window.location.reload();
   }
 
   void logout({String redirect_to: "/"}) {
-    _logout().then((_event) {
-      window.location.hash = redirect_to;
-      window.location.reload();
-    });
+    _logout(redirect_to);
   }
 }
 
@@ -31,7 +30,7 @@ class EndpointServiceConfig {
   String root_url;
 }
 
-class EndpointService implements APIService {
+class EndpointService extends APIService {
   final _REVOKE_URL = "https://accounts.google.com/o/oauth2/revoke?token=";
   final _SCOPES = ["https://www.googleapis.com/auth/userinfo.email"];
 
@@ -66,10 +65,11 @@ class EndpointService implements APIService {
     return _endpoint.auth.login();
   }
 
-  Future _logout() {
+  void logout({String redirect_to: "/"}) {
     String revoke_url = _REVOKE_URL + _endpoint.auth.token.data;
     _http.get(revoke_url).then((_response) {
       _endpoint.auth.logout();
+      _logout(redirect_to);
     });
   }
 }
