@@ -36,7 +36,6 @@ class GoogleCloudEndpointService extends APIService {
 
   Http _http;
   Timecard _endpoint;
-  Timecard get endpoint => _endpoint;
 
   GoogleCloudEndpointService(GoogleCloudEndpointServiceConfig c, Http this._http) {
     GoogleOAuth2 auth = new GoogleOAuth2(c.client_id, _SCOPES, autoLogin:autoLogin());
