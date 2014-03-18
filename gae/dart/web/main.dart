@@ -20,13 +20,13 @@ import "dart:mirrors";
 
 class MyAppModule extends Module {
   MyAppModule() {
-    value(EndpointServiceConfig, new EndpointServiceConfig()
+    value(GoogleCloudEndpointServiceConfig, new GoogleCloudEndpointServiceConfig()
       ..client_id = "636938638718.apps.googleusercontent.com"
       ..root_url = "http://localhost:8080/");
     factory(APIService, (Injector inj){
-      return inj.get(EndpointService);
+      return inj.get(GoogleCloudEndpointService);
     });
-    type(EndpointService);
+    type(GoogleCloudEndpointService);
     type(MeService);
     type(Controller);
     type(NavComponent);

@@ -25,12 +25,12 @@ class APIService {
   }
 }
 
-class EndpointServiceConfig {
+class GoogleCloudEndpointServiceConfig {
   String client_id;
   String root_url;
 }
 
-class EndpointService extends APIService {
+class GoogleCloudEndpointService extends APIService {
   final _REVOKE_URL = "https://accounts.google.com/o/oauth2/revoke?token=";
   final _SCOPES = ["https://www.googleapis.com/auth/userinfo.email"];
 
@@ -38,7 +38,7 @@ class EndpointService extends APIService {
   Timecard _endpoint;
   Timecard get endpoint => _endpoint;
 
-  EndpointService(EndpointServiceConfig c, Http this._http) {
+  GoogleCloudEndpointService(GoogleCloudEndpointServiceConfig c, Http this._http) {
     GoogleOAuth2 auth = new GoogleOAuth2(c.client_id, _SCOPES, autoLogin:autoLogin());
     _endpoint = new Timecard(auth);
     _endpoint.rootUrl = c.root_url;
@@ -75,12 +75,12 @@ class EndpointService extends APIService {
 }
 
 class MeService {
-  EndpointService _endpointService;
+  GoogleCloudEndpointService _endpointService;
   Future _loaded;
   Http _http;
   User user;
 
-  MeService(Http this._http, EndpointService this._endpointService) {
+  MeService(Http this._http, GoogleCloudEndpointService this._endpointService) {
     var loadMe = _loadMe();
     if (loadMe != null) {
       _loaded = Future.wait([_loadMe()]);
