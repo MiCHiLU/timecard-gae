@@ -76,10 +76,9 @@ class GoogleCloudEndpointService extends APIService {
 class MeService {
   GoogleCloudEndpointService _endpointService;
   Future _loaded;
-  Http _http;
   User user;
 
-  MeService(Http this._http, GoogleCloudEndpointService this._endpointService) {
+  MeService(GoogleCloudEndpointService this._endpointService) {
     var loadMe = _loadMe();
     if (loadMe != null) {
       _loaded = Future.wait([_loadMe()]);
