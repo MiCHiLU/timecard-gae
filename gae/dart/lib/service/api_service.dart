@@ -9,6 +9,15 @@ import "package:timecard_dev_api/timecard_dev_api_browser.dart";
 import "package:timecard_dev_api/timecard_dev_api_client.dart";
 
 class APIService {
+  dynamic get comment;
+  dynamic get issue;
+  dynamic get me;
+  dynamic get project;
+  dynamic get user;
+  dynamic get workload;
+  Model get model => new Model();
+  dynamic new_user(data) => new Map();
+
   bool logged_in() {
   }
 
@@ -25,6 +34,22 @@ class APIService {
   }
 }
 
+class Model {
+  Map<String, dynamic> _resource = new Map();
+  dynamic get comment   => _resource["comment"] ;
+  dynamic get issue     => _resource["issue"]   ;
+  dynamic get me        => _resource["me"]      ;
+  dynamic get project   => _resource["project"] ;
+  dynamic get user      => _resource["user"]    ;
+  dynamic get workload  => _resource["workload"];
+  set comment   (dynamic data) => _resource["comment"]  = data;
+  set issue     (dynamic data) => _resource["issue"]    = data;
+  set me        (dynamic data) => _resource["me"]       = data;
+  set project   (dynamic data) => _resource["project"]  = data;
+  set user      (dynamic data) => _resource["user"]     = data;
+  set workload  (dynamic data) => _resource["workload"] = data;
+}
+
 class GoogleCloudEndpointServiceConfig {
   String client_id;
   String root_url;
@@ -34,14 +59,39 @@ class GoogleCloudEndpointService extends APIService {
   final _REVOKE_URL = "https://accounts.google.com/o/oauth2/revoke?token=";
   final _SCOPES = ["https://www.googleapis.com/auth/userinfo.email"];
 
+  Future _loaded;
   Http _http;
+  Model model;
   Timecard _endpoint;
 
-  GoogleCloudEndpointService(GoogleCloudEndpointServiceConfig c, Http this._http) {
+  dynamic get comment   => _endpoint.comment ;
+  dynamic get issue     => _endpoint.issue   ;
+  dynamic get me        => _endpoint.me ;
+  dynamic get project   => _endpoint.project ;
+  dynamic get user      => _endpoint.user    ;
+  dynamic get workload  => _endpoint.workload;
+
+  GoogleCloudEndpointService(GoogleCloudEndpointServiceConfig c, Http this._http, Model this.model) {
     GoogleOAuth2 auth = new GoogleOAuth2(c.client_id, _SCOPES, autoLogin:autoLogin());
     _endpoint = new Timecard(auth);
     _endpoint.rootUrl = c.root_url;
     _endpoint.makeAuthRequests = true;
+    var loadMe = _loadMe();
+    if (loadMe != null) {
+      _loaded = Future.wait([loadMe]);
+    }
+  }
+
+  Future _loadMe() {
+    if (!autoLogin()) {
+      return null;
+    }
+    return me.get().then((response) {
+      model.me = response;
+    })
+    .catchError((error) {
+      window.location.hash = "/signup";
+    }, test: (e) => e is APIRequestError);
   }
 
   bool autoLogin() {
@@ -55,6 +105,8 @@ class GoogleCloudEndpointService extends APIService {
         break;
     };
   }
+
+  MainApiV1MessageUserRequest new_user(data) => new MainApiV1MessageUserRequest.fromJson(data);
 
   bool logged_in() {
     return _endpoint.auth.token != null;
@@ -70,62 +122,5 @@ class GoogleCloudEndpointService extends APIService {
       _endpoint.auth.logout();
       _redirect(redirect_to);
     });
-  }
-}
-
-class MeService {
-  GoogleCloudEndpointService _endpointService;
-  Future _loaded;
-  User user;
-
-  MeService(GoogleCloudEndpointService this._endpointService) {
-    var loadMe = _loadMe();
-    if (loadMe != null) {
-      _loaded = Future.wait([_loadMe()]);
-    }
-  }
-
-  Future _loadMe() {
-    if (!_endpointService.autoLogin()) {
-      return null;
-    }
-    return _endpointService.endpoint.me.get().then((response) {
-      user = response;
-    })
-    .catchError((error) {
-      window.location.hash = "/signup";
-    }, test: (e) => e is APIRequestError);
-  }
-
-  Future get() {
-    if (_loaded == null) {
-      _loaded = Future.wait([_loadMe()]);
-    }
-    if (user == null && _loaded != null) {
-      return _loaded.then((_) {
-        return user;
-      });
-    }
-    return new Future.value(user);
-  }
-
-  Future create(String name) {
-    var new_user = new MainApiV1MessageUserRequest.fromJson({});
-    new_user.name = name;
-    return _endpointService.endpoint.me.create(new_user).then((response) {
-      user = response;
-      return user;
-    });
-  }
-
-  Future update() {
-    return _endpointService.endpoint.me.update(user).then((response) {
-      user = response;
-      return user;
-    });
-  }
-
-  Future delete() {
-    return _endpointService.endpoint.me.delete(user);
   }
 }

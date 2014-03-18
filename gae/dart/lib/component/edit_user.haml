@@ -1,8 +1,8 @@
 %form(name="edit_user" onsubmit="return false;")
   .form-group
     %label{:for => "name"} Name
-    %input.form-control(type="text" ng-show="c.a.me.user==null" readonly)/
-    %input.form-control(name="name" type="text" ng-hide="c.a.me.user==null" ng-model="c.a.me.user.name" required)/
+    %input.form-control(type="text" ng-show="c.a.model.me==null" readonly)/
+    %input.form-control(name="name" type="text" ng-hide="c.a.model.me==null" ng-model="c.a.model.me.name" required)/
   -#.form-group
   -#  %label{:for => "language"} Language
   -#  %select.form-control(name="language" ng-model="language" ng-init="language='{{ a.user.language }}'")

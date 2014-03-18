@@ -11,6 +11,6 @@ import "package:angular/angular.dart";
 class EditUserComponent {
   @NgTwoWay("a")
   var a;
-  @NgTwoWay("user")
-  var user;
+  @NgTwoWay("me")
+  var me;
 }

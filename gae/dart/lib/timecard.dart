@@ -14,21 +14,21 @@ import "package:timecard_client/service/api_service.dart";
     selector: "[app]",
     publishAs: "a")
 class Controller {
-  APIService _apiService;
-  MeService me;
+  APIService _api;
+  dynamic get model => _api.model;
 
-  Controller(APIService this._apiService, MeService this.me);
+  Controller(APIService this._api);
 
   bool loading() {
     return false;
   }
 
   bool logged_in() {
-    return _apiService.logged_in();
+    return _api.logged_in();
   }
 
   void login() {
-    _apiService.login().whenComplete(() {
+    _api.login().whenComplete(() {
       switch (window.location.hash) {
         case "#/logout":
         case "#/leave":
@@ -39,21 +39,26 @@ class Controller {
   }
 
   void logout({String redirect_to: "/logout"}) {
-    _apiService.logout(redirect_to: redirect_to);
+    _api.logout(redirect_to: redirect_to);
   }
 
   void me_create(String name) {
-    me.create(name).then((_) {
+    var new_user = _api.new_user({});
+    new_user.name = name;
+    _api.me.create(new_user).then((response) {
+      model.me = response;
       window.location.hash = "";
     });
   }
 
   void me_update() {
-    me.update();
+    _api.me.update(model.me).then((response) {
+      model.me = response;
+    });
   }
 
   void me_delete() {
-    me.delete().then((_) {
+    _api.me.delete(model.me).then((_response) {
       logout(redirect_to: "/leave");
     });
   }
