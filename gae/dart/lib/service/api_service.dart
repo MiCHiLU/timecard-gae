@@ -15,13 +15,13 @@ class APIService {
   Future login() {
   }
 
-  void _logout(redirect_to) {
+  void _redirect(redirect_to) {
     window.location.hash = redirect_to;
     window.location.reload();
   }
 
   void logout({String redirect_to: "/"}) {
-    _logout(redirect_to);
+    _redirect(redirect_to);
   }
 }
 
@@ -69,7 +69,7 @@ class GoogleCloudEndpointService extends APIService {
     String revoke_url = _REVOKE_URL + _endpoint.auth.token.data;
     _http.get(revoke_url).then((_response) {
       _endpoint.auth.logout();
-      _logout(redirect_to);
+      _redirect(redirect_to);
     });
   }
 }
