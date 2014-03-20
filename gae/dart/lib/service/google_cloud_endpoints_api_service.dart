@@ -13,8 +13,16 @@ import "package:timecard_client/service/api_service.dart";
 class GoogleCloudEndpointModel extends Model {
   Future _loaded;
   GoogleCloudEndpointService _api;
+  Map get _model => inner_model;
+  Map get _resource => inner_resource;
+  set me (dynamic value) {
+    _model["me"] = value;
+    _resource["me"] = value.toJson();
+  }
 
   GoogleCloudEndpointModel(GoogleCloudEndpointService this._api) {
+    inner_model = new Map();
+    inner_resource = new Map();
     var load = _get_me();
     if (load != null) {
       _loaded = Future.wait([load]);
@@ -31,6 +39,26 @@ class GoogleCloudEndpointModel extends Model {
     .catchError((error) {
       window.location.hash = "/signup";
     }, test: (e) => e is APIRequestError);
+  }
+
+  bool edited(String name) {
+    var model = _model[name];
+    var resource = _resource[name];
+    if (model != null) {
+      model = model.toJson();
+    }
+    if (model == resource) {
+      return false;
+    }
+    if (model.length != resource.length) {
+      return true;
+    }
+    for (var key in resource.keys) {
+      if (model[key] != resource[key]) {
+        return true;
+      };
+    }
+    return false;
   }
 }
 
