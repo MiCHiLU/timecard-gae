@@ -55,13 +55,13 @@ class GoogleCloudEndpointModel extends Model {
   GoogleCloudEndpointService _api;
 
   GoogleCloudEndpointModel(GoogleCloudEndpointService this._api) {
-    var loadMe = _loadMe();
-    if (loadMe != null) {
-      _loaded = Future.wait([loadMe]);
+    var load = _get_me();
+    if (load != null) {
+      _loaded = Future.wait([load]);
     }
   }
 
-  Future _loadMe() {
+  Future _get_me() {
     if (!_api.autoLogin()) {
       return null;
     }
