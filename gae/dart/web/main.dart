@@ -7,6 +7,7 @@ import "package:logging/logging.dart";
 
 import "package:timecard_client/timecard.dart";
 import "package:timecard_client/service/api_service.dart";
+import "package:timecard_client/service/google_cloud_endpoints_api_service.dart";
 import "package:timecard_client/routing/timecard_router.dart";
 import "package:timecard_client/component/nav.dart";
 import "package:timecard_client/component/footer.dart";
