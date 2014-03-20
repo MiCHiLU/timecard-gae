@@ -1,7 +1,7 @@
 library google_cloud_endpoints_api_service;
 
-import "dart:html";
 import "dart:async";
+import "dart:html";
 
 import "package:angular/angular.dart";
 import "package:google_oauth2_client/google_oauth2_browser.dart";
