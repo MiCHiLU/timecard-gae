@@ -26,7 +26,7 @@ class MyAppModule extends Module {
     factory(APIService, (Injector inj){
       return inj.get(GoogleCloudEndpointService);
     });
-    type(Model);
+    type(GoogleCloudEndpointModel);
     type(GoogleCloudEndpointService);
     type(Controller);
     type(NavComponent);

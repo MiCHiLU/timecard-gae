@@ -9,13 +9,13 @@ import "package:timecard_dev_api/timecard_dev_api_browser.dart";
 import "package:timecard_dev_api/timecard_dev_api_client.dart";
 
 class APIService {
+  Model model;
   dynamic get comment;
   dynamic get issue;
   dynamic get me;
   dynamic get project;
   dynamic get user;
   dynamic get workload;
-  Model get model => new Model();
   dynamic new_user(data) => new Map();
 
   bool logged_in() {
@@ -50,6 +50,30 @@ class Model {
   set workload  (dynamic data) => _resource["workload"] = data;
 }
 
+class GoogleCloudEndpointModel extends Model {
+  Future _loaded;
+  GoogleCloudEndpointService _api;
+
+  GoogleCloudEndpointModel(GoogleCloudEndpointService this._api) {
+    var loadMe = _loadMe();
+    if (loadMe != null) {
+      _loaded = Future.wait([loadMe]);
+    }
+  }
+
+  Future _loadMe() {
+    if (!_api.autoLogin()) {
+      return null;
+    }
+    return _api.me.get().then((response) {
+      me = response;
+    })
+    .catchError((error) {
+      window.location.hash = "/signup";
+    }, test: (e) => e is APIRequestError);
+  }
+}
+
 class GoogleCloudEndpointServiceConfig {
   String client_id;
   String root_url;
@@ -59,9 +83,7 @@ class GoogleCloudEndpointService extends APIService {
   final _REVOKE_URL = "https://accounts.google.com/o/oauth2/revoke?token=";
   final _SCOPES = ["https://www.googleapis.com/auth/userinfo.email"];
 
-  Future _loaded;
   Http _http;
-  Model model;
   Timecard _endpoint;
 
   dynamic get comment   => _endpoint.comment ;
@@ -71,27 +93,12 @@ class GoogleCloudEndpointService extends APIService {
   dynamic get user      => _endpoint.user    ;
   dynamic get workload  => _endpoint.workload;
 
-  GoogleCloudEndpointService(GoogleCloudEndpointServiceConfig c, Http this._http, Model this.model) {
+  GoogleCloudEndpointService(GoogleCloudEndpointServiceConfig c, Http this._http) {
     GoogleOAuth2 auth = new GoogleOAuth2(c.client_id, _SCOPES, autoLogin:autoLogin());
     _endpoint = new Timecard(auth);
     _endpoint.rootUrl = c.root_url;
     _endpoint.makeAuthRequests = true;
-    var loadMe = _loadMe();
-    if (loadMe != null) {
-      _loaded = Future.wait([loadMe]);
-    }
-  }
-
-  Future _loadMe() {
-    if (!autoLogin()) {
-      return null;
-    }
-    return me.get().then((response) {
-      model.me = response;
-    })
-    .catchError((error) {
-      window.location.hash = "/signup";
-    }, test: (e) => e is APIRequestError);
+    model = new GoogleCloudEndpointModel(this);
   }
 
   bool autoLogin() {
