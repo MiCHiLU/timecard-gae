@@ -33,12 +33,16 @@ class GoogleCloudEndpointModel extends Model {
     if (!_api.autoLogin()) {
       return null;
     }
+    var completer = _api.loading_completer();
     return _api.me.get().then((response) {
       me = response;
     })
     .catchError((error) {
       window.location.hash = "/signup";
-    }, test: (e) => e is APIRequestError);
+    }, test: (e) => e is APIRequestError)
+    .whenComplete(() {
+      completer.complete();
+    });
   }
 
   bool edited(String name) {
@@ -113,9 +117,13 @@ class GoogleCloudEndpointService extends APIService {
 
   void logout({String redirect_to: "/"}) {
     String revoke_url = _REVOKE_URL + _endpoint.auth.token.data;
+    var completer = loading_completer();
     _http.get(revoke_url).then((_response) {
       _endpoint.auth.logout();
       redirect(redirect_to);
+    })
+    .whenComplete(() {
+      completer.complete();
     });
   }
 }

@@ -45,6 +45,8 @@ class Model {
 }
 
 class APIService {
+
+  List<Completer> _loading_completers = new List();
   Model model;
   dynamic get comment;
   dynamic get issue;
@@ -53,6 +55,23 @@ class APIService {
   dynamic get user;
   dynamic get workload;
   dynamic new_user(data) => new Map();
+
+  Completer loading_completer() {
+    Completer completer = new Completer();
+    _loading_completers.add(completer);
+    return completer;
+  }
+
+  bool loading() {
+    for(Completer completer in _loading_completers) {
+      if (completer.isCompleted) {
+        //_loading_completers.remove(completer);
+      } else {
+        return true;
+      }
+    }
+    return false;
+  }
 
   bool logged_in() {
   }

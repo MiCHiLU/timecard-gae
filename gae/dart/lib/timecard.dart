@@ -20,7 +20,7 @@ class Controller {
   Controller(APIService this._api);
 
   bool loading() {
-    return false;
+    return _api.loading();
   }
 
   bool logged_in() {
@@ -28,7 +28,9 @@ class Controller {
   }
 
   void login() {
+    var completer = _api.loading_completer();
     _api.login().whenComplete(() {
+      completer.complete();
       switch (window.location.hash) {
         case "#/logout":
         case "#/leave":
@@ -45,21 +47,33 @@ class Controller {
   void me_create(String name) {
     var new_user = _api.new_user({});
     new_user.name = name;
+    var completer = _api.loading_completer();
     _api.me.create(new_user).then((response) {
       model.me = response;
       window.location.hash = "";
+    })
+    .whenComplete(() {
+      completer.complete();
     });
   }
 
   void me_update() {
+    var completer = _api.loading_completer();
     _api.me.update(model.me).then((response) {
       model.me = response;
+    })
+    .whenComplete(() {
+      completer.complete();
     });
   }
 
   void me_delete() {
+    var completer = _api.loading_completer();
     _api.me.delete(model.me).then((_response) {
       logout(redirect_to: "/leave");
+    })
+    .whenComplete(() {
+      completer.complete();
     });
   }
 }
