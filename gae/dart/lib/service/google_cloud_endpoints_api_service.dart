@@ -115,7 +115,7 @@ class GoogleCloudEndpointService extends APIService {
     String revoke_url = _REVOKE_URL + _endpoint.auth.token.data;
     _http.get(revoke_url).then((_response) {
       _endpoint.auth.logout();
-      _redirect(redirect_to);
+      redirect(redirect_to);
     });
   }
 }

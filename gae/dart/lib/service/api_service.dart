@@ -60,12 +60,12 @@ class APIService {
   Future login() {
   }
 
-  void _redirect(redirect_to) {
+  void redirect(redirect_to) {
     window.location.hash = redirect_to;
     window.location.reload();
   }
 
   void logout({String redirect_to: "/"}) {
-    _redirect(redirect_to);
+    redirect(redirect_to);
   }
 }
