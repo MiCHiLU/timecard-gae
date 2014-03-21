@@ -63,14 +63,21 @@ class APIService {
   }
 
   bool loading() {
+    bool result = false;
+    List completed = new List();
     for(Completer completer in _loading_completers) {
       if (completer.isCompleted) {
-        //_loading_completers.remove(completer);
+        completed.add(completer);
       } else {
-        return true;
+        result = true;
       }
     }
-    return false;
+    if (completed.length) {
+      for(Completer completer in completed) {
+        _loading_completers.remove(completer);
+      }
+    }
+    return result;
   }
 
   bool logged_in() {
