@@ -1,6 +1,10 @@
 .col-lg-12.col-md-12(app)
   %h2 Edit User
   %edit_user-component(a="a" me="a.model.me")
+
+  %h2 Remember Me
+  %remember_me-component(a="a")
+
   %h2 Service
   %dl
     %dt
@@ -11,6 +15,7 @@
       %b Ruffnote
     %dd
       %a.btn.btn-default.disabled(href="") Sign in with Ruffnote
+
   %h3 Cancel my account
   %form
     .checkbox
