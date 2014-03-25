@@ -13,21 +13,20 @@ import "package:angular/angular.dart";
 class RememberMeComponent {
   @NgTwoWay("a")
   var a;
-  Storage localStorage = window.localStorage;
 
-  bool _save_this_browser;
-  bool get save_this_browser => _save_this_browser;
-  set save_this_browser(bool value) {
-    _save_this_browser = value;
-    localStorage["save_this_browser"] = JSON.encode(value);
-  }
+  Storage _localStorage = window.localStorage;
+  final String _key = "save_this_browser";
+  final bool _default = false;
 
-  RememberMeComponent() {
-    var value = localStorage["save_this_browser"];
+  bool get save_this_browser {
+    var value = _localStorage[_key];
     if (value == null) {
-      _save_this_browser = false;
+      return _default;
     } else {
-      _save_this_browser = JSON.decode(value);
+      return JSON.decode(value);
     }
+  }
+  set save_this_browser(bool value) {
+    _localStorage[_key] = JSON.encode(value);
   }
 }
