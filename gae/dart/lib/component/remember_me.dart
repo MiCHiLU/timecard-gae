@@ -4,23 +4,42 @@ import "dart:convert";
 import "dart:html";
 import "package:angular/angular.dart";
 
-class RememberMe {
-
+class localStorage {
   Storage _localStorage = window.localStorage;
-  final String _key = "save_this_browser";
-  final bool _default = false;
-  final String _message = "You are logged in. Please click the logout if you want logout from Google account.";
 
-  bool get save_this_browser {
-    var value = _localStorage[_key];
+  String _key(dynamic key) {
+    if (key is! String) {
+      key = JSON.encode(key);
+    }
+    return key;
+  }
+
+  dynamic get(dynamic key, dynamic default_value) {
+    var value = _localStorage[_key(key)];
     if (value == null) {
-      return _default;
+      return default_value;
     } else {
       return JSON.decode(value);
     }
   }
+
+  set(dynamic key, dynamic value) {
+    _localStorage[_key(key)] = JSON.encode(value);
+  }
+}
+
+class RememberMe {
+
+  final String _key = "save_this_browser";
+  final bool _default = false;
+  final String _message = "You are logged in. Please click the logout if you want logout from Google account.";
+  localStorage _localStorage = new localStorage();
+
+  bool get save_this_browser {
+    return _localStorage.get(_key, _default);
+  }
   set save_this_browser(bool value) {
-    _localStorage[_key] = JSON.encode(value);
+    _localStorage.set(_key, value);
   }
 
   RememberMe() {
