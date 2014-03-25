@@ -30,7 +30,7 @@ class Controller {
     return _api.logged_in();
   }
 
-  void login() {
+  Completer login() {
     var completer = _api.loading_completer();
     _api.login().whenComplete(() {
       completer.complete();
@@ -41,13 +41,14 @@ class Controller {
           break;
       };
     });
+    return completer;
   }
 
   void logout({String redirect_to: "/logout"}) {
     _api.logout(redirect_to: redirect_to);
   }
 
-  void me_create(String name) {
+  Completer me_create(String name) {
     var new_user = _api.new_user({});
     new_user.name = name;
     var completer = _api.loading_completer();
@@ -58,9 +59,10 @@ class Controller {
     .whenComplete(() {
       completer.complete();
     });
+    return completer;
   }
 
-  void me_update() {
+  Completer me_update() {
     var completer = _api.loading_completer();
     _api.me.update(model.me).then((response) {
       model.me = response;
@@ -68,9 +70,10 @@ class Controller {
     .whenComplete(() {
       completer.complete();
     });
+    return completer;
   }
 
-  void me_delete() {
+  Completer me_delete() {
     var completer = _api.loading_completer();
     _api.me.delete(model.me).then((_response) {
       logout(redirect_to: "/leave");
@@ -78,5 +81,6 @@ class Controller {
     .whenComplete(() {
       completer.complete();
     });
+    return completer;
   }
 }

@@ -13,4 +13,10 @@ class EditUserComponent {
   var a;
   @NgTwoWay("me")
   var me;
+
+  Completer completer;
+
+  void me_update() {
+    completer = a.me_update();
+  }
 }
