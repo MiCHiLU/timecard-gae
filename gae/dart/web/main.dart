@@ -34,6 +34,7 @@ class MyAppModule extends Module {
     type(NavComponent);
     type(FooterComponent);
     type(EditUserComponent);
+    type(RememberMe);
     type(RememberMeComponent);
     value(RouteInitializerFn, timecardRouteInitializer);
     factory(NgRoutingUsePushState,

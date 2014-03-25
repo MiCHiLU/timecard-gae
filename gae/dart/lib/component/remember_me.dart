@@ -4,19 +4,12 @@ import "dart:convert";
 import "dart:html";
 import "package:angular/angular.dart";
 
-@NgComponent(
-  selector: "remember_me-component",
-  templateUrl: "packages/timecard_client/component/remember_me.html",
-  applyAuthorStyles: true,
-  publishAs: "c"
-)
-class RememberMeComponent {
-  @NgTwoWay("a")
-  var a;
+class RememberMe {
 
   Storage _localStorage = window.localStorage;
   final String _key = "save_this_browser";
   final bool _default = false;
+  final String _message = "You are logged in. Please click the logout if you want logout from Google account.";
 
   bool get save_this_browser {
     var value = _localStorage[_key];
@@ -29,4 +22,38 @@ class RememberMeComponent {
   set save_this_browser(bool value) {
     _localStorage[_key] = JSON.encode(value);
   }
+
+  RememberMe() {
+    window.onBeforeUnload.listen((e) {
+      switch (window.location.hash) {
+        case "#/logout":
+        case "#/leave":
+          break;
+        default:
+          if (save_this_browser != true) {
+            return _message;
+          }
+      };
+    });
+  }
+}
+
+@NgComponent(
+  selector: "remember_me-component",
+  templateUrl: "packages/timecard_client/component/remember_me.html",
+  applyAuthorStyles: true,
+  publishAs: "c"
+)
+class RememberMeComponent {
+  @NgTwoWay("a")
+  var a;
+
+  RememberMe _remember_me;
+
+  bool get save_this_browser => _remember_me.save_this_browser;
+  set save_this_browser(bool value) {
+    _remember_me.save_this_browser = value;
+  }
+
+  RememberMeComponent(RememberMe this._remember_me);
 }

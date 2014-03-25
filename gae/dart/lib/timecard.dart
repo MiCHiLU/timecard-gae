@@ -8,16 +8,19 @@ import "package:timecard_dev_api/timecard_dev_api_browser.dart";
 import "package:timecard_dev_api/timecard_dev_api_client.dart";
 import 'package:intl/intl.dart';
 
+import "package:timecard_client/component/remember_me.dart";
 import "package:timecard_client/service/api_service.dart";
 
 @NgController(
     selector: "[app]",
     publishAs: "a")
 class Controller {
+
   APIService _api;
+  RememberMe _remember_me;
   dynamic get model => _api.model;
 
-  Controller(APIService this._api);
+  Controller(APIService this._api, RememberMe this._remember_me);
 
   bool loading() {
     return _api.loading();
